@@ -10,6 +10,7 @@ export default defineConfig({
       provider: "v8",
       include: ["src/**/*.{js,jsx,ts,tsx}"],
       exclude: ["src/main.jsx"],
+      reporter: ["lcov", "text"],
     },
   },
 });
