@@ -1,7 +1,7 @@
 import { describe, expect, it, afterEach } from "vitest";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { fetchPhones } from "./phoneServices";
+import { fetchPhones } from "./phonesServices";
 import {
   basicMockedUrl,
   searchMockedUrl,
