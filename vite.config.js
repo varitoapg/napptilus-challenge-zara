@@ -8,7 +8,7 @@ export default defineConfig({
     environment: "jsdom",
     coverage: {
       provider: "v8",
-      include: ["src/**/*.jsx"],
+      include: ["src/**/*.{js,jsx,ts,tsx}"],
       exclude: ["src/main.jsx"],
     },
   },
