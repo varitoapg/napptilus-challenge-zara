@@ -19,6 +19,7 @@ jobs:
         run: npm run coverage
         env:
           VITE_APP_API_URL: ${{ secrets.VITE_APP_API_URL }}
+          VITE_APP_API_KEY: ${{ secrets.VITE_APP_API_KEY }}
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
