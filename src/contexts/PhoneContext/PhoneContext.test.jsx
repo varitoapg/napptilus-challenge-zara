@@ -2,7 +2,7 @@ import { render, waitFor, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import { PhoneProvider } from "./PhoneContext";
 import { fetchPhones } from "../../services/phonesServices/phonesServices";
-import { PhoneContextComponent } from "../../mocks/phones/MockedComponentWithPhones";
+import { MockedUseOfPhoneContext } from "../../mocks/phones/MockedUseOfPhoneContext";
 import { mockPhones } from "../../mocks/phones/phones";
 
 vi.mock("../../services/phonesServices/phonesServices", () => ({
@@ -19,7 +19,7 @@ describe("PhoneContext", () => {
 
     render(
       <PhoneProvider>
-        <PhoneContextComponent />
+        <MockedUseOfPhoneContext />
       </PhoneProvider>
     );
 
@@ -44,7 +44,7 @@ describe("PhoneContext", () => {
 
     render(
       <PhoneProvider>
-        <PhoneContextComponent />
+        <MockedUseOfPhoneContext />
       </PhoneProvider>
     );
 
