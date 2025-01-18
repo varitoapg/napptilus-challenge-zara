@@ -13,8 +13,8 @@ export const MockedUseOfPhoneContext = () => {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       <ul>
-        {phones.map((phone, index) => (
-          <li key={index}>{phone.name}</li>
+        {phones.map((phone) => (
+          <li key={phone.id}>{phone.name}</li>
         ))}
       </ul>
     </div>
