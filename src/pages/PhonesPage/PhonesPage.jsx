@@ -1,7 +1,7 @@
 function PhonesPage() {
   return (
     <>
-      <h1>List of phones</h1>
+      <h2>List of phones</h2>
     </>
   );
 }
