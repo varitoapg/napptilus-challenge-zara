@@ -1,26 +1,36 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
+import { PhoneProvider } from "../../contexts/PhoneContext/PhoneContext";
 import App from "./App.jsx";
 
 describe("App", () => {
   afterEach(cleanup);
 
+  vi.mock("../../hooks/usePhones/usePhones", () => ({
+    usePhones: vi.fn().mockReturnValue({
+      phones: [
+        { id: 1, name: "Phone 1" },
+        { id: 2, name: "Phone 2" },
+      ],
+      totalPhones: 2,
+    }),
+  }));
+
   it("renders the heading and Phones page", () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
-        <App />
+        <PhoneProvider>
+          <App />
+        </PhoneProvider>
       </MemoryRouter>
     );
 
     const heading = screen.getByRole("heading", { name: "Zara Challenge" });
-    const secondHeading = screen.getByRole("heading", {
-      name: "List of phones",
-      level: 2,
-    });
+    const totalPhones = screen.queryByText("2 results");
 
     expect(heading).not.toBeNull();
-    expect(secondHeading).not.toBeNull();
+    expect(totalPhones).not.toBeNull();
   });
 
   it("renders the heading and Phone detail when navigate to /phone/123", () => {

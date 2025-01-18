@@ -6,7 +6,9 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Zara Challenge</h1>
+      <header>
+        <h1>Zara Challenge</h1>
+      </header>
       <Routes>
         <Route path="/" element={<PhonesPage />} />
         <Route path="/phone/:phoneId" element={<PhoneDetailPage />} />
