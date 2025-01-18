@@ -1,0 +1,36 @@
+.phones-page {
+  padding: 20px 80px;
+}
+
+.phones-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.phones-page__search-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.phones-page__results-count {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .phones-page {
+    padding: 10px 40px;
+  }
+}
+
+@media (max-width: 425px) {
+  .phones-page {
+    padding: 10px 10px;
+  }
+
+  .phones-page__content {
+    gap: 40px;
+  }
+}
