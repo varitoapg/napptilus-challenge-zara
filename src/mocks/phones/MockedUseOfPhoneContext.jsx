@@ -1,7 +1,7 @@
 import React from "react";
 import { usePhoneContext } from "../../contexts/PhoneContext/PhoneContext";
 
-export const PhoneContextComponent = () => {
+export const MockedUseOfPhoneContext = () => {
   const { phones, loadPhones, loading, error } = usePhoneContext();
 
   React.useEffect(() => {
