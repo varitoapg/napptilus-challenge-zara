@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function PhoneCard({ phone }) {
   return (
-    <article className="phone-card">
+    <article className="phone-card" data-testid="phone-card">
       <img
         src={phone.imageUrl}
         alt={phone.name}
