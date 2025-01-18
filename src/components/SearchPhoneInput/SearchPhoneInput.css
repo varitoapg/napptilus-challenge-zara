@@ -1,0 +1,13 @@
+.search-phone-input {
+  width: 100%;
+  height: 27px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #00000067;
+  outline: none;
+}
+
+.search-phone-input::placeholder {
+  color: #aaaaaa;
+}

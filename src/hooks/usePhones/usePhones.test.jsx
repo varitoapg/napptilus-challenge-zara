@@ -36,7 +36,7 @@ describe("usePhones Hook", () => {
     expect(screen.queryByText("Loading...")).not.toBeNull();
   });
 
-  it("displays phones when loaded successfully", async () => {
+  it("displays phones when loaded successfully also the total phones", async () => {
     usePhoneContext.mockReturnValue({
       phones: mockPhones,
       loading: false,
@@ -53,6 +53,7 @@ describe("usePhones Hook", () => {
     await waitFor(() => {
       expect(screen.queryByText("Phone 1")).not.toBeNull();
       expect(screen.queryByText("Phone 2")).not.toBeNull();
+      expect(screen.queryByText("Total Phones: 2")).not.toBeNull();
     });
   });
 
