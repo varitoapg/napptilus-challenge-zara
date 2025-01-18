@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { fetchPhones } from "../../services/phonesServices/phonesServices";
 import PropTypes from "prop-types";
+import { removeDuplicatesById } from "../../utils/arrays/arrays";
 
 const PhoneContext = createContext();
 
@@ -14,7 +15,8 @@ export const PhoneProvider = ({ children }) => {
     setError(null);
     try {
       const data = await fetchPhones(search);
-      setPhones(data);
+      const uniquePhones = removeDuplicatesById(data);
+      setPhones(uniquePhones);
     } catch (err) {
       setError("Failed to load phones: " + err.message);
     } finally {
