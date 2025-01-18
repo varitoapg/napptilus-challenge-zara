@@ -6,7 +6,7 @@ import {
   basicMockedUrl,
   searchMockedUrl,
   limitOffsetMockedUrl,
-} from "../mocks/phones/urls";
+} from "../../mocks/phones/urls";
 
 const mockAxios = new MockAdapter(axios);
 
