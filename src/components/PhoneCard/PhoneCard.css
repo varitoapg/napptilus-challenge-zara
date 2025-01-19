@@ -74,3 +74,14 @@
 .phone-card:hover .phone-card__brand {
   color: white;
 }
+
+.phone-card__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.phone-card__link:focus,
+.phone-card__link:hover {
+  text-decoration: none;
+}
