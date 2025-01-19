@@ -1,12 +1,14 @@
 import { createContext, useCallback, useContext, useState } from "react";
-import { fetchPhones } from "../../services/phonesServices/phonesServices";
 import PropTypes from "prop-types";
+import { fetchPhones } from "../../services/phonesServices/phonesServices";
+import { fetchPhoneDetail } from "../../services/phoneDetailServices/phoneDetailServices";
 import { removeDuplicatesById } from "../../utils/arrays/arrays";
 
 const PhoneContext = createContext();
 
 export const PhoneProvider = ({ children }) => {
   const [phones, setPhones] = useState([]);
+  const [phoneDetails, setPhoneDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -24,11 +26,26 @@ export const PhoneProvider = ({ children }) => {
     }
   }, []);
 
+  const loadPhoneDetails = useCallback(async (phoneId) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await fetchPhoneDetail(phoneId);
+      setPhoneDetails(data);
+    } catch (err) {
+      setError("Failed to load phone details: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   return (
     <PhoneContext.Provider
       value={{
         phones,
         loadPhones,
+        phoneDetails,
+        loadPhoneDetails,
         loading,
         error,
       }}
