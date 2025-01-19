@@ -10,6 +10,7 @@ import PhonesPage from "./PhonesPage";
 import { PhoneProvider } from "../../contexts/PhoneContext/PhoneContext";
 import { usePhones } from "../../hooks/usePhones/usePhones";
 import { useSearchPhone } from "../../hooks/useSearchPhone/useSearchPhone";
+import { BrowserRouter } from "react-router-dom";
 
 vi.mock("../../hooks/usePhones/usePhones");
 vi.mock("../../hooks/useSearchPhone/useSearchPhone");
@@ -35,9 +36,11 @@ describe("PhonesPage", () => {
 
   it("should render search input and phone list", async () => {
     render(
-      <PhoneProvider>
-        <PhonesPage />
-      </PhoneProvider>
+      <BrowserRouter>
+        <PhoneProvider>
+          <PhonesPage />
+        </PhoneProvider>
+      </BrowserRouter>
     );
 
     expect(
@@ -63,9 +66,11 @@ describe("PhonesPage", () => {
     });
 
     render(
-      <PhoneProvider>
-        <PhonesPage />
-      </PhoneProvider>
+      <BrowserRouter>
+        <PhoneProvider>
+          <PhonesPage />
+        </PhoneProvider>
+      </BrowserRouter>
     );
 
     const input = screen.getByPlaceholderText("Search for a smartphone...");
