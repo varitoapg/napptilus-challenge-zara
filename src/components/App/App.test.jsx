@@ -26,10 +26,10 @@ describe("App", () => {
       </MemoryRouter>
     );
 
-    const heading = screen.getByRole("heading", { name: "Zara Challenge" });
+    const logo = screen.getByTestId("logo");
     const totalPhones = screen.queryByText("2 results");
 
-    expect(heading).not.toBeNull();
+    expect(logo).not.toBeNull();
     expect(totalPhones).not.toBeNull();
   });
 
@@ -40,13 +40,13 @@ describe("App", () => {
       </MemoryRouter>
     );
 
-    const heading = screen.getByRole("heading", { name: "Zara Challenge" });
+    const logo = screen.getByTestId("logo");
     const secondHeading = screen.getByRole("heading", {
       name: "Phone detail",
       level: 2,
     });
 
-    expect(heading).not.toBeNull();
+    expect(logo).not.toBeNull();
     expect(secondHeading).not.toBeNull();
   });
 });
