@@ -2,6 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import Header from "./Header";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
+import { BrowserRouter } from "react-router-dom";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 
@@ -15,7 +16,11 @@ describe("Header", () => {
       phonesInCart: 0,
     });
 
-    render(<Header />);
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
 
     const logo = screen.getByTestId("logo");
 
@@ -29,7 +34,11 @@ describe("Header", () => {
       phonesInCart: 0,
     });
 
-    render(<Header />);
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
 
     const phonesInCart = screen.queryByText("0");
     const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
@@ -47,7 +56,11 @@ describe("Header", () => {
       phonesInCart: 0,
     });
 
-    render(<Header />);
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
 
     const phonesInCart = screen.queryByText("0");
     const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
@@ -65,7 +78,11 @@ describe("Header", () => {
       phonesInCart: 3,
     });
 
-    render(<Header />);
+    render(
+      <BrowserRouter>
+        <Header />
+      </BrowserRouter>
+    );
 
     const phonesInCart = screen.queryByText("3");
     const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
