@@ -30,10 +30,23 @@ export const usePhoneSelector = (initialPhone, colorOptions) => {
     setSelectedStorage({ capacity: storage.capacity, price: storage.price });
   };
 
+  const handleSubmitPhone = () => {
+    // eslint-disable-next-line no-unused-vars
+    const newPhone = {
+      name: initialPhone.name,
+      colorName: selectedColor.name,
+      imageUrl: selectedColor.imageUrl,
+      capacity: selectedStorage.capacity,
+      price: selectedStorage.price,
+    };
+    // TODO: Implement the function to add to cart
+  };
+
   return {
     selectedColor,
     selectedStorage,
     handleColorChange,
     handleStorageChange,
+    handleSubmitPhone,
   };
 };
