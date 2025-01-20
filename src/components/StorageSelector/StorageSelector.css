@@ -1,0 +1,28 @@
+.storage-selector__label {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.storage-selector__buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.storage-selector__button {
+  border: 1px solid #bebebe;
+  padding: 10px 10px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 14px;
+  height: 48px;
+  width: 95px;
+}
+
+.storage-selector__button--selected {
+  border: 1px solid black;
+}
+
+.storage-selector__button--no-selected {
+  border: 1px solid grey;
+}
