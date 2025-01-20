@@ -17,6 +17,16 @@ describe("App", () => {
     }),
   }));
 
+  vi.mock("../../hooks/useCartInformation/useCartInformation", () => ({
+    useCartInformation: vi.fn().mockReturnValue({
+      phones: [
+        { id: 1, name: "Phone 1" },
+        { id: 2, name: "Phone 2" },
+      ],
+      totalPhones: 2,
+    }),
+  }));
+
   it("renders the heading and Phones page", () => {
     render(
       <MemoryRouter initialEntries={["/"]}>
