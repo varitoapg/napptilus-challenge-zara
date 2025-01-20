@@ -3,7 +3,11 @@ import { describe, it, expect } from "vitest";
 import { usePhoneSelector } from "./usePhoneSelector";
 
 describe("usePhoneSelector", () => {
-  const initialPhone = { imageUrl: "initialImage.jpg", name: "Initial Phone" };
+  const initialPhone = {
+    hexCode: "#000000",
+    imageUrl: "blackImage.jpg",
+    name: "Black",
+  };
   const colorOptions = [
     { hexCode: "#000000", imageUrl: "blackImage.jpg", name: "Black" },
     { hexCode: "#FFFFFF", imageUrl: "whiteImage.jpg", name: "White" },
@@ -15,6 +19,7 @@ describe("usePhoneSelector", () => {
     );
 
     expect(result.current.selectedColor).toEqual({
+      hexCode: initialPhone.hexCode,
       imageUrl: initialPhone.imageUrl,
       name: initialPhone.name,
     });
@@ -31,6 +36,7 @@ describe("usePhoneSelector", () => {
     });
 
     expect(result.current.selectedColor).toEqual({
+      hexCode: "#000000",
       imageUrl: "blackImage.jpg",
       name: "Black",
     });
