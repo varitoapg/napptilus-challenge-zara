@@ -42,4 +42,15 @@ describe("PhoneCardList", () => {
       expect(phoneCard).not.toBeNull(`${phones[index].basePrice} EUR`);
     });
   });
+
+  it("renders PhoneCard components in a horizontal layout", () => {
+    render(
+      <BrowserRouter>
+        <PhoneCardList phones={phones} isHorizontal />
+      </BrowserRouter>
+    );
+    const phoneCards = screen.queryByTestId("phone-card-list");
+
+    expect(phoneCards).toHaveClass("phone-grid-horizontal");
+  });
 });
