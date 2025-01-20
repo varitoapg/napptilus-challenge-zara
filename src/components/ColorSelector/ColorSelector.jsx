@@ -4,12 +4,12 @@ import "./ColorSelector.css";
 function ColorSelector({ colorOptions, handleSelection, selectedColor }) {
   return (
     <div className="color-selector">
-      <label className="color-selector__title">
+      <label className="color-selector__title" htmlFor="color-selector">
         Color, pick your favourite
       </label>
-      <div className="color-selector__container">
+      <div className="color-selector__container" id="color-selector">
         {colorOptions.map((option) => (
-          <div
+          <button
             key={option.hexCode}
             className={`color-selector__item ${
               selectedColor.hexCode === option.hexCode
@@ -24,7 +24,7 @@ function ColorSelector({ colorOptions, handleSelection, selectedColor }) {
               className="color-selector__inner"
               style={{ backgroundColor: option.hexCode }}
             />
-          </div>
+          </button>
         ))}
       </div>
       {selectedColor && (

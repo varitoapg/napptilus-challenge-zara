@@ -91,9 +91,7 @@
   width: 344px;
   height: 344px;
   margin-right: 0;
-  display: inline-block;
   flex-shrink: 0;
-  height: auto;
   border: 1px solid #00000067;
   padding: 1rem;
   box-sizing: border-box;
