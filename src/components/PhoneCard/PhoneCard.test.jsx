@@ -48,4 +48,14 @@ describe("PhoneCard", () => {
     const priceElement = screen.getByText(`${phone.basePrice} EUR`);
     expect(priceElement).not.toBeNull();
   });
+
+  it("renders the phone card with phone-card--horizontal class", () => {
+    render(
+      <BrowserRouter>
+        <PhoneCard phone={phone} layout="horizontal" />
+      </BrowserRouter>
+    );
+    const articleElement = screen.getByTestId(`phone-card`);
+    expect(articleElement).toHaveClass("phone-card--horizontal");
+  });
 });

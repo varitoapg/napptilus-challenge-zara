@@ -1,0 +1,15 @@
+.phone-detail-page {
+  padding: 20px 80px;
+}
+
+.phone-detail-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media (max-width: 425px) {
+  .phone-detail-page {
+    padding: 10px 10px;
+  }
+}

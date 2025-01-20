@@ -42,4 +42,26 @@ describe("PhoneCardList", () => {
       expect(phoneCard).not.toBeNull(`${phones[index].basePrice} EUR`);
     });
   });
+
+  it("renders PhoneCard components in a horizontal layout", () => {
+    render(
+      <BrowserRouter>
+        <PhoneCardList phones={phones} isHorizontal />
+      </BrowserRouter>
+    );
+    const phoneCards = screen.queryByTestId("phone-card-list");
+
+    expect(phoneCards).toHaveClass("phone-grid-horizontal");
+  });
+
+  it("renders PhoneCard with `title` in it", () => {
+    render(
+      <BrowserRouter>
+        <PhoneCardList phones={phones} isHorizontal title="title" />
+      </BrowserRouter>
+    );
+    const title = screen.queryByRole("heading", { name: /title/i, level: 2 });
+
+    expect(title).toBeInTheDocument();
+  });
 });

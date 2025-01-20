@@ -32,21 +32,4 @@ describe("App", () => {
     expect(logo).not.toBeNull();
     expect(totalPhones).not.toBeNull();
   });
-
-  it("renders the heading and Phone detail when navigate to /phone/123", () => {
-    render(
-      <MemoryRouter initialEntries={["/phone/123"]}>
-        <App />
-      </MemoryRouter>
-    );
-
-    const logo = screen.getByTestId("logo");
-    const secondHeading = screen.getByRole("heading", {
-      name: "Phone detail",
-      level: 2,
-    });
-
-    expect(logo).not.toBeNull();
-    expect(secondHeading).not.toBeNull();
-  });
 });
