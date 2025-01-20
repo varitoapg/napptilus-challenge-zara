@@ -2,10 +2,13 @@ import { Link } from "react-router-dom";
 import "./PhoneCard.css";
 import PropTypes from "prop-types";
 
-function PhoneCard({ phone }) {
+function PhoneCard({ phone, layout = "grid" }) {
+  const cardClass =
+    layout === "horizontal" ? "phone-card--horizontal" : "phone-card";
+
   return (
     <Link to={`/phone/${phone.id}`} className="phone-card__link">
-      <article className="phone-card" data-testid="phone-card">
+      <article className={cardClass} data-testid="phone-card">
         <img
           src={phone.imageUrl}
           alt={phone.name}
@@ -31,6 +34,7 @@ PhoneCard.propTypes = {
     brand: PropTypes.string.isRequired,
     basePrice: PropTypes.number.isRequired,
   }).isRequired,
+  layout: PropTypes.oneOf(["horizontal", "grid"]),
 };
 
 export default PhoneCard;
