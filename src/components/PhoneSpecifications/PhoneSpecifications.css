@@ -46,3 +46,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 425px) {
+  .phone-specifications__item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .phone-specifications__title {
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  .phone-specifications__description {
+    font-size: 12px;
+  }
+}
