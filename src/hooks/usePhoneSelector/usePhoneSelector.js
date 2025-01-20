@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const usePhoneSelector = (initialPhone, colorOptions) => {
   const [selectedColor, setSelectedColor] = useState({
@@ -8,6 +8,15 @@ export const usePhoneSelector = (initialPhone, colorOptions) => {
   });
 
   const [selectedStorage, setSelectedStorage] = useState(null);
+
+  useEffect(() => {
+    setSelectedColor({
+      imageUrl: initialPhone.imageUrl,
+      name: initialPhone.name,
+      hexCode: initialPhone.hexCode,
+    });
+    setSelectedStorage(null);
+  }, [initialPhone]);
 
   const handleColorChange = (hexCode) => {
     const selectedOption = colorOptions.find(
