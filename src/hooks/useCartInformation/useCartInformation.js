@@ -1,11 +1,14 @@
 import { useLocation } from "react-router-dom";
+import { useCartContext } from "../../contexts/CartContext/CartContext";
 
 export const useCartInformation = () => {
   const location = useLocation();
   const isCartVisible = !location.pathname.split("/").includes("cart");
 
-  // TODO: Change when cart context is implemented
-  const havePurchases = false;
-  const phonesInCart = 0;
-  return { havePurchases, phonesInCart, isCartVisible };
+  const { cart } = useCartContext();
+
+  const phonesInCart = cart.length;
+  const totalPrice = cart.reduce((acc, phone) => acc + phone.price, 0);
+
+  return { totalPrice, phonesInCart, isCartVisible, cart };
 };
