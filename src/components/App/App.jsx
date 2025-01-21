@@ -1,8 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import PhonesPage from "../../pages/PhonesPage/PhonesPage";
 import PhoneDetailPage from "../../pages/PhoneDetailPage/PhoneDetailPage";
-import "./App.css";
 import Header from "../Header/Header";
+import CartPage from "../../pages/CartPage/CartPage";
+import "./App.css";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PhonesPage />} />
         <Route path="/phone/:phoneId" element={<PhoneDetailPage />} />
-        <Route path="/cart" element={<div>Cart</div>} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
