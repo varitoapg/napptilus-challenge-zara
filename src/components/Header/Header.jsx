@@ -6,7 +6,7 @@ import Logo from "../Logo/Logo";
 import "./Header.css";
 
 function Header() {
-  const { isCartVisible, havePurchases, phonesInCart } = useCartInformation();
+  const { isCartVisible, phonesInCart } = useCartInformation();
 
   return (
     <header className="header">
@@ -15,7 +15,7 @@ function Header() {
       </Link>
       {isCartVisible && (
         <div className="header__cart">
-          {havePurchases ? <FullCartIcon /> : <EmptyCartIcon />}
+          {phonesInCart > 0 ? <FullCartIcon /> : <EmptyCartIcon />}
           <p>{phonesInCart}</p>
         </div>
       )}
