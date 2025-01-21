@@ -28,7 +28,6 @@ describe("CartDisplay", () => {
     ];
     useCartInformation.mockReturnValue({ cart: mockCart });
 
-    // Mock useCartContext to return some basic functionality for ItemInCart
     const mockUseCartContext = {
       addPhoneToCart: vi.fn(),
       removePhoneFromCart: vi.fn(),
