@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import CartDisplay from "./CartDisplay";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
+import { BrowserRouter } from "react-router-dom";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 vi.mock("../../contexts/CartContext/CartContext", () => ({
@@ -15,7 +16,11 @@ describe("CartDisplay", () => {
   it("renders an empty cart message when cart is empty", () => {
     useCartInformation.mockReturnValue({ cart: [] });
 
-    render(<CartDisplay />);
+    render(
+      <BrowserRouter>
+        <CartDisplay />
+      </BrowserRouter>
+    );
 
     const cartList = screen.queryByRole("list");
     expect(cartList).toBeNull();
@@ -32,9 +37,14 @@ describe("CartDisplay", () => {
       addPhoneToCart: vi.fn(),
       removePhoneFromCart: vi.fn(),
     };
+
     useCartContext.mockReturnValue(mockUseCartContext);
 
-    render(<CartDisplay />);
+    render(
+      <BrowserRouter>
+        <CartDisplay />
+      </BrowserRouter>
+    );
 
     mockCart.forEach((phone) => {
       expect(screen.getByText(phone.name)).toBeInTheDocument();
