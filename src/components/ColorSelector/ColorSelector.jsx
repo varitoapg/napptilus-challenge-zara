@@ -28,9 +28,7 @@ function ColorSelector({ colorOptions, handleSelection, selectedColor }) {
         ))}
       </div>
       {selectedColor && (
-        <div className="color-selector__selected-name">
-          {selectedColor.name}
-        </div>
+        <p className="color-selector__selected-name">{selectedColor.name}</p>
       )}
     </div>
   );
