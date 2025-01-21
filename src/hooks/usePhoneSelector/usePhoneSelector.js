@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useCartActions } from "../useCartActions/useCartActions";
 
-export const usePhoneSelector = (initialPhone, colorOptions) => {
+export const usePhoneSelector = (initialPhone, colorOptions, name) => {
+  const { phoneId } = useParams();
+
   const { saveToCart } = useCartActions();
   const [selectedColor, setSelectedColor] = useState({
     imageUrl: initialPhone.imageUrl,
@@ -34,7 +37,8 @@ export const usePhoneSelector = (initialPhone, colorOptions) => {
 
   const handleSubmitPhone = () => {
     const newPhone = {
-      name: initialPhone.name,
+      id: phoneId,
+      name: name,
       colorName: selectedColor.name,
       imageUrl: selectedColor.imageUrl,
       capacity: selectedStorage.capacity,
