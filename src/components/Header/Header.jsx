@@ -14,10 +14,10 @@ function Header() {
         <Logo className="header__logo" />
       </Link>
       {isCartVisible && (
-        <div className="header__cart">
+        <Link to="/cart" className="header__cart-link">
           {phonesInCart > 0 ? <FullCartIcon /> : <EmptyCartIcon />}
           <p>{phonesInCart}</p>
-        </div>
+        </Link>
       )}
     </header>
   );
