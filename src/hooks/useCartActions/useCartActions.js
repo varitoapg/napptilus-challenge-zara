@@ -1,7 +1,10 @@
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
 
 export const useCartActions = () => {
+  const navigate = useNavigate();
+
   const { addPhoneToCart, removePhoneFromCart } = useCartContext();
 
   const saveToCart = useCallback(
@@ -18,5 +21,9 @@ export const useCartActions = () => {
     [removePhoneFromCart]
   );
 
-  return { saveToCart, removeFromCart };
+  const handleContinueShopping = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
+
+  return { saveToCart, removeFromCart, handleContinueShopping };
 };

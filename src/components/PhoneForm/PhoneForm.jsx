@@ -12,7 +12,7 @@ function PhoneForm({ colorOptions, name, basePrice, storageOptions }) {
     handleStorageChange,
     handleColorChange,
     handleSubmitPhone,
-  } = usePhoneSelector(colorOptions[0], colorOptions);
+  } = usePhoneSelector(colorOptions[0], colorOptions, name);
 
   return (
     <div className="phone-form">
@@ -43,7 +43,6 @@ function PhoneForm({ colorOptions, name, basePrice, storageOptions }) {
           />
         </div>
 
-        {/* TODO: Implement the function to add to cart */}
         <Button
           disabled={!selectedColor || !selectedStorage}
           onClick={handleSubmitPhone}

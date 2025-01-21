@@ -1,0 +1,21 @@
+.cart-page {
+  padding: 20px 80px;
+}
+
+.cart-page__total {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.cart-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media (max-width: 425px) {
+  .cart-page {
+    padding: 10px 10px;
+  }
+}

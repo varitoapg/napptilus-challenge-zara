@@ -4,6 +4,9 @@ import { useCartActions } from "../useCartActions/useCartActions";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 
 vi.mock("../useCartActions/useCartActions");
+vi.mock("react-router-dom", () => ({
+  useParams: () => ({ phoneId: "Initial-Phone-id" }),
+}));
 
 describe("usePhoneSelector", () => {
   const initialPhone = {
@@ -11,6 +14,9 @@ describe("usePhoneSelector", () => {
     name: "Initial Phone",
     hexCode: "#000000",
   };
+
+  const name = "Initial Phone name";
+  const id = "Initial-Phone-id";
 
   const colorOptions = [
     { imageUrl: "image-url-1", name: "Color 1", hexCode: "#111111" },
@@ -75,7 +81,7 @@ describe("usePhoneSelector", () => {
 
   it("should call saveToCart with the correct phone details when handleSubmitPhone is called", () => {
     const { result } = renderHook(() =>
-      usePhoneSelector(initialPhone, colorOptions)
+      usePhoneSelector(initialPhone, colorOptions, name)
     );
 
     act(() => {
@@ -88,7 +94,8 @@ describe("usePhoneSelector", () => {
     });
 
     expect(saveToCartMock).toHaveBeenCalledWith({
-      name: "Initial Phone",
+      id,
+      name,
       colorName: "Color 1",
       imageUrl: "image-url-1",
       capacity: "128GB",
