@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useCartActions } from "../useCartActions/useCartActions";
 
 export const usePhoneSelector = (initialPhone, colorOptions) => {
+  const { saveToCart } = useCartActions();
   const [selectedColor, setSelectedColor] = useState({
     imageUrl: initialPhone.imageUrl,
     name: initialPhone.name,
@@ -31,7 +33,6 @@ export const usePhoneSelector = (initialPhone, colorOptions) => {
   };
 
   const handleSubmitPhone = () => {
-    // eslint-disable-next-line no-unused-vars
     const newPhone = {
       name: initialPhone.name,
       colorName: selectedColor.name,
@@ -39,7 +40,8 @@ export const usePhoneSelector = (initialPhone, colorOptions) => {
       capacity: selectedStorage.capacity,
       price: selectedStorage.price,
     };
-    // TODO: Implement the function to add to cart
+
+    saveToCart(newPhone);
   };
 
   return {
