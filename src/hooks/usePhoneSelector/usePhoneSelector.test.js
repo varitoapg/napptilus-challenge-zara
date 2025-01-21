@@ -1,27 +1,43 @@
 import { renderHook, act } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
 import { usePhoneSelector } from "./usePhoneSelector";
+import { useCartActions } from "../useCartActions/useCartActions";
+import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+
+vi.mock("../useCartActions/useCartActions");
 
 describe("usePhoneSelector", () => {
   const initialPhone = {
+    imageUrl: "initial-image-url",
+    name: "Initial Phone",
     hexCode: "#000000",
-    imageUrl: "blackImage.jpg",
-    name: "Black",
   };
+
   const colorOptions = [
-    { hexCode: "#000000", imageUrl: "blackImage.jpg", name: "Black" },
-    { hexCode: "#FFFFFF", imageUrl: "whiteImage.jpg", name: "White" },
+    { imageUrl: "image-url-1", name: "Color 1", hexCode: "#111111" },
+    { imageUrl: "image-url-2", name: "Color 2", hexCode: "#222222" },
   ];
 
-  it("should initialize with the initial phone details", () => {
+  const storageOptions = { capacity: "128GB", price: 999 };
+
+  const saveToCartMock = vi.fn();
+
+  beforeEach(() => {
+    useCartActions.mockReturnValue({ saveToCart: saveToCartMock });
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("should initialize with the initial phone color", () => {
     const { result } = renderHook(() =>
       usePhoneSelector(initialPhone, colorOptions)
     );
 
     expect(result.current.selectedColor).toEqual({
-      hexCode: initialPhone.hexCode,
-      imageUrl: initialPhone.imageUrl,
-      name: initialPhone.name,
+      imageUrl: "initial-image-url",
+      name: "Initial Phone",
+      hexCode: "#000000",
     });
     expect(result.current.selectedStorage).toBeNull();
   });
@@ -32,13 +48,13 @@ describe("usePhoneSelector", () => {
     );
 
     act(() => {
-      result.current.handleColorChange("#000000");
+      result.current.handleColorChange("#111111");
     });
 
     expect(result.current.selectedColor).toEqual({
-      hexCode: "#000000",
-      imageUrl: "blackImage.jpg",
-      name: "Black",
+      imageUrl: "image-url-1",
+      name: "Color 1",
+      hexCode: "#111111",
     });
   });
 
@@ -46,13 +62,35 @@ describe("usePhoneSelector", () => {
     const { result } = renderHook(() =>
       usePhoneSelector(initialPhone, colorOptions)
     );
-    const storage = { capacity: "128GB", price: 999 };
 
     act(() => {
-      result.current.handleStorageChange(storage);
+      result.current.handleStorageChange(storageOptions);
     });
 
     expect(result.current.selectedStorage).toEqual({
+      capacity: "128GB",
+      price: 999,
+    });
+  });
+
+  it("should call saveToCart with the correct phone details when handleSubmitPhone is called", () => {
+    const { result } = renderHook(() =>
+      usePhoneSelector(initialPhone, colorOptions)
+    );
+
+    act(() => {
+      result.current.handleColorChange("#111111");
+      result.current.handleStorageChange(storageOptions);
+    });
+
+    act(() => {
+      result.current.handleSubmitPhone();
+    });
+
+    expect(saveToCartMock).toHaveBeenCalledWith({
+      name: "Initial Phone",
+      colorName: "Color 1",
+      imageUrl: "image-url-1",
       capacity: "128GB",
       price: 999,
     });

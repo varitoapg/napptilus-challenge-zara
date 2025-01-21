@@ -1,12 +1,24 @@
 import { render, screen } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { vi, describe, it, expect, beforeEach } from "vitest";
 import PhoneDetailPage from "./PhoneDetailPage";
 import { usePhoneDetails } from "../../hooks/usePhoneDetails/usePhoneDetails";
 import { BrowserRouter } from "react-router-dom";
+import { useCartContext } from "../../contexts/CartContext/CartContext";
 
 vi.mock("../../hooks/usePhoneDetails/usePhoneDetails");
 
+vi.mock("../../contexts/CartContext/CartContext", () => ({
+  useCartContext: vi.fn(),
+}));
+
 describe("PhoneDetailPage", () => {
+  beforeEach(() => {
+    useCartContext.mockReturnValue({
+      addPhoneToCart: vi.fn(),
+      removePhoneFromCart: vi.fn(),
+    });
+  });
+
   it("renders PhoneForm, PhoneSpecifications, and PhoneCardList when phoneDetails is available", () => {
     const mockPhoneDetails = {
       colorOptions: ["Black", "White"],
