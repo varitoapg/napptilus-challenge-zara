@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCartActions } from "../useCartActions/useCartActions";
+import { v4 as uuidv4 } from "uuid";
 
 export const usePhoneSelector = (initialPhone, colorOptions, name) => {
   const { phoneId } = useParams();
@@ -36,6 +37,8 @@ export const usePhoneSelector = (initialPhone, colorOptions, name) => {
   };
 
   const handleSubmitPhone = () => {
+    const uniqueCartId = uuidv4();
+
     const newPhone = {
       id: phoneId,
       name: name,
@@ -43,6 +46,7 @@ export const usePhoneSelector = (initialPhone, colorOptions, name) => {
       imageUrl: selectedColor.imageUrl,
       capacity: selectedStorage.capacity,
       price: selectedStorage.price,
+      cartId: uniqueCartId,
     };
 
     saveToCart(newPhone);
