@@ -10,25 +10,25 @@
 
 .custom-button.white {
   background-color: var(--main-white);
-  color: var(--main-dar);
-  border: 1px solid var(--main-dar);
+  color: var(--main-dark);
+  border: 1px solid var(--main-dark);
 }
 
 .custom-button.white:not(.disabled):hover {
-  background-color: var(--main-dar);
+  background-color: var(--main-dark);
   color: var(--main-white);
 }
 
 .custom-button.black {
-  background-color: var(--main-dar);
+  background-color: var(--main-dark);
   color: var(--main-white);
   border: 1px solid transparent;
 }
 
 .custom-button.black:not(.disabled):hover {
   background-color: var(--main-white);
-  color: var(--main-dar);
-  border: 1px solid var(--main-dar);
+  color: var(--main-dark);
+  border: 1px solid var(--main-dark);
 }
 
 .custom-button.disabled {
