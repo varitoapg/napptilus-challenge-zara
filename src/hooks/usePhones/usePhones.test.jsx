@@ -1,12 +1,16 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
-
-import { MockedUseOfUsePhones } from "../../mocks/phones/MockedUseOfUsePhones";
 import {
   usePhoneContext,
   PhoneProvider,
 } from "../../contexts/PhoneContext/PhoneContext";
-import { mockPhones } from "../../mocks/phones/phones";
+import { MockedUseOfUsePhones } from "../../mocks/components/MockedUseOfUsePhones";
+import {
+  mockUsePhoneContextLoading,
+  mockUsePhoneContextWithPhones,
+  mockUsePhoneContextWithError,
+} from "../../mocks/contexts/usePhoneContext";
+import { mockedPhoneList } from "../../mocks/phones/phones";
 
 vi.mock("../../contexts/PhoneContext/PhoneContext", () => ({
   usePhoneContext: vi.fn(),
@@ -19,13 +23,10 @@ describe("usePhones Hook", () => {
     vi.clearAllMocks();
   });
 
+  const loadingText = "Loading...";
+
   it("displays loading initially", () => {
-    usePhoneContext.mockReturnValue({
-      phones: [],
-      loading: true,
-      error: null,
-      loadPhones: vi.fn(),
-    });
+    usePhoneContext.mockReturnValue(mockUsePhoneContextLoading);
 
     render(
       <PhoneProvider>
@@ -33,16 +34,13 @@ describe("usePhones Hook", () => {
       </PhoneProvider>
     );
 
-    expect(screen.queryByText("Loading...")).not.toBeNull();
+    const loader = screen.queryByText(loadingText);
+
+    expect(loader).not.toBeNull();
   });
 
   it("displays phones when loaded successfully also the total phones", async () => {
-    usePhoneContext.mockReturnValue({
-      phones: mockPhones,
-      loading: false,
-      error: null,
-      loadPhones: vi.fn(),
-    });
+    usePhoneContext.mockReturnValue(mockUsePhoneContextWithPhones);
 
     render(
       <PhoneProvider>
@@ -51,19 +49,21 @@ describe("usePhones Hook", () => {
     );
 
     await waitFor(() => {
-      expect(screen.queryByText("Phone 1")).not.toBeNull();
-      expect(screen.queryByText("Phone 2")).not.toBeNull();
-      expect(screen.queryByText("Total Phones: 2")).not.toBeNull();
+      const firstPhone = screen.queryByText(mockedPhoneList[0].name);
+      const secondPhone = screen.queryByText(mockedPhoneList[1].name);
+      const totalPhones = screen.queryByText(
+        `Total Phones: ${mockedPhoneList.length}`
+      );
+
+      expect(firstPhone).not.toBeNull();
+      expect(secondPhone).not.toBeNull();
+      expect(totalPhones).not.toBeNull();
     });
   });
 
   it("displays error when loading fails", async () => {
-    usePhoneContext.mockReturnValue({
-      phones: [],
-      loading: false,
-      error: "Failed to load phones.",
-      loadPhones: vi.fn(),
-    });
+    const errorText = "Failed to load phones.";
+    usePhoneContext.mockReturnValue(mockUsePhoneContextWithError);
 
     render(
       <PhoneProvider>
@@ -72,7 +72,8 @@ describe("usePhones Hook", () => {
     );
 
     await waitFor(() => {
-      expect(screen.queryByText("Failed to load phones.")).not.toBeNull();
+      const error = screen.queryByText(errorText);
+      expect(error).not.toBeNull();
     });
   });
 });
