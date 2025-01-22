@@ -21,10 +21,12 @@ export const CartProvider = ({ children }) => {
   );
 
   const removePhoneFromCart = useCallback(
-    (phoneId) => {
-      const updatedCart = cart.filter((phone) => phone.id !== phoneId);
+    (cartIdToRemove) => {
+      const updatedCart = cart.filter(
+        (phone) => phone.cartId !== cartIdToRemove
+      );
       setCart(updatedCart);
-      removePhoneFromLocalStorage(phoneId);
+      removePhoneFromLocalStorage(cartIdToRemove);
     },
     [cart]
   );
