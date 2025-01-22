@@ -1,8 +1,9 @@
 import { renderHook, act } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { vi, describe, beforeEach, afterEach, it, expect } from "vitest";
 import { useCartActions } from "./useCartActions";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
-import { vi, describe, beforeEach, afterEach, it, expect } from "vitest";
+import { mockedCart } from "../../mocks/cart/cart";
 
 const mockedUseNavigate = vi.fn();
 vi.mock("../../contexts/CartContext/CartContext");
@@ -34,10 +35,10 @@ describe("useCartActions", () => {
     });
 
     act(() => {
-      result.current.saveToCart({ id: 1, name: "Phone 1" });
+      result.current.saveToCart(mockedCart[0]);
     });
 
-    expect(addPhoneToCart).toHaveBeenCalledWith({ id: 1, name: "Phone 1" });
+    expect(addPhoneToCart).toHaveBeenCalledWith(mockedCart[0]);
   });
 
   it("should remove phone from cart", () => {
