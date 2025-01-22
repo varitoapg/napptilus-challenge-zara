@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
-import { MockedUseOfusePhoneDetails } from "../../mocks/phones/MockedUseOfusePhoneDetails";
+import { MockedUseOfusePhoneDetails } from "../../mocks/components/MockedUseOfusePhoneDetails";
 import {
   usePhoneContext,
   PhoneProvider,
