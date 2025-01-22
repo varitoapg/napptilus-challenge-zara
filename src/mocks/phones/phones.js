@@ -67,3 +67,25 @@ export const mockPhoneDetail = {
     },
   ],
 };
+
+export const mockedPhoneToAdapt = {
+  basePrice: 999,
+  brand: "TestBrand",
+  colorOptions: ["Black", "White"],
+  description: "Test description",
+  id: "123",
+  name: "TestPhone",
+  rating: 4.5,
+  similarProducts: [
+    { id: "1", name: "SimilarPhone1" },
+    { id: "2", name: "SimilarPhone2" },
+    { id: "1", name: "SimilarPhone1" },
+  ],
+  specs: { ram: "8GB", storage: "128GB" },
+  storageOptions: ["128GB", "256GB"],
+};
+
+export const mockedSimilarPhones = [
+  { id: "1", name: "SimilarPhone1" },
+  { id: "2", name: "SimilarPhone2" },
+];

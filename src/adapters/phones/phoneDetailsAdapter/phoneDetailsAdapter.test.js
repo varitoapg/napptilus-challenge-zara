@@ -1,6 +1,10 @@
 import { vi, describe, it, expect } from "vitest";
 import phoneDetailsAdapter from "./phoneDetailsAdapter";
 import { removeDuplicatesById } from "../../../utils/arrays/arrays";
+import {
+  mockedPhoneToAdapt,
+  mockedSimilarPhones,
+} from "../../../mocks/phones/phones";
 
 vi.mock("../../../utils/arrays/arrays", () => ({
   removeDuplicatesById: vi.fn(),
@@ -8,31 +12,9 @@ vi.mock("../../../utils/arrays/arrays", () => ({
 
 describe("phoneDetailsAdapter", () => {
   it("should adapt phone details correctly", () => {
-    const phone = {
-      basePrice: 999,
-      brand: "TestBrand",
-      colorOptions: ["Black", "White"],
-      description: "Test description",
-      id: "123",
-      name: "TestPhone",
-      rating: 4.5,
-      similarProducts: [
-        { id: "1", name: "SimilarPhone1" },
-        { id: "2", name: "SimilarPhone2" },
-        { id: "1", name: "SimilarPhone1" },
-      ],
-      specs: { ram: "8GB", storage: "128GB" },
-      storageOptions: ["128GB", "256GB"],
-    };
+    removeDuplicatesById.mockReturnValue(mockedSimilarPhones);
 
-    const uniqueSimilarPhones = [
-      { id: "1", name: "SimilarPhone1" },
-      { id: "2", name: "SimilarPhone2" },
-    ];
-
-    removeDuplicatesById.mockReturnValue(uniqueSimilarPhones);
-
-    const adaptedPhone = phoneDetailsAdapter(phone);
+    const adaptedPhone = phoneDetailsAdapter(mockedPhoneToAdapt);
 
     expect(adaptedPhone).toEqual({
       basePrice: 999,
@@ -42,11 +24,13 @@ describe("phoneDetailsAdapter", () => {
       id: "123",
       name: "TestPhone",
       rating: 4.5,
-      similarProducts: uniqueSimilarPhones,
+      similarProducts: mockedSimilarPhones,
       specs: { ram: "8GB", storage: "128GB" },
       storageOptions: ["128GB", "256GB"],
     });
 
-    expect(removeDuplicatesById).toHaveBeenCalledWith(phone.similarProducts);
+    expect(removeDuplicatesById).toHaveBeenCalledWith(
+      mockedPhoneToAdapt.similarProducts
+    );
   });
 });
