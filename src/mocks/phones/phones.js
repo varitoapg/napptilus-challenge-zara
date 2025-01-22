@@ -89,3 +89,39 @@ export const mockedSimilarPhones = [
   { id: "1", name: "SimilarPhone1" },
   { id: "2", name: "SimilarPhone2" },
 ];
+
+export const mockedPhoneList = [
+  {
+    id: 1,
+    name: "Phone 1",
+    brand: "Brand A",
+    basePrice: 100,
+    imageUrl: "http://example.com/phone1.jpg",
+  },
+  {
+    id: 2,
+    name: "Phone 2",
+    brand: "Brand B",
+    basePrice: 200,
+    imageUrl: "http://example.com/phone2.jpg",
+  },
+];
+
+export const mockedPhoneListWIthExtraFields = [
+  {
+    id: 1,
+    name: "Phone 1",
+    brand: "Brand A",
+    basePrice: 100,
+    imageUrl: "http://example.com/phone1.jpg",
+    extraField: "extraValue1",
+  },
+  {
+    id: 2,
+    name: "Phone 2",
+    brand: "Brand B",
+    basePrice: 200,
+    imageUrl: "http://example.com/phone2.jpg",
+    extraField: "extraValue2",
+  },
+];
