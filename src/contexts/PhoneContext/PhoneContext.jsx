@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { fetchPhones } from "../../services/phonesServices/phonesServices";
 import { fetchPhoneDetail } from "../../services/phoneDetailServices/phoneDetailServices";
 import { removeDuplicatesById } from "../../utils/arrays/arrays";
+import phoneListAdapter from "../../adapters/phones/phoneListAdapter/phoneListAdapter";
+import phoneDetailsAdapter from "../../adapters/phones/phoneDetailsAdapter/phoneDetailsAdapter";
 
 const PhoneContext = createContext();
 
@@ -18,7 +20,8 @@ export const PhoneProvider = ({ children }) => {
     try {
       const data = await fetchPhones(search);
       const uniquePhones = removeDuplicatesById(data);
-      setPhones(uniquePhones);
+      const parsedPhones = phoneListAdapter(uniquePhones);
+      setPhones(parsedPhones);
     } catch (err) {
       setError("Failed to load phones: " + err.message);
     } finally {
@@ -31,7 +34,8 @@ export const PhoneProvider = ({ children }) => {
     setError(null);
     try {
       const data = await fetchPhoneDetail(phoneId);
-      setPhoneDetails(data);
+      const parsedPhones = phoneDetailsAdapter(data); // Call the adapter function
+      setPhoneDetails(parsedPhones);
     } catch (err) {
       setError("Failed to load phone details: " + err.message);
     } finally {
