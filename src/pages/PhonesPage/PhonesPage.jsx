@@ -6,7 +6,8 @@ import "./PhonesPage.css";
 import Header from "../../components/Header/Header";
 
 function PhonesPage() {
-  const { searchQuery, setSearchQuery, debouncedQuery } = useSearchPhone();
+  const { searchQuery, setSearchQuery, debouncedQuery, handlerClear } =
+    useSearchPhone();
   const { phones, totalPhones } = usePhones(debouncedQuery);
 
   return (
@@ -16,6 +17,7 @@ function PhonesPage() {
           <SearchPhoneInput
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
+            handleClear={handlerClear}
           />
           <p className="phones-page__results-count">{totalPhones} results</p>
         </div>
