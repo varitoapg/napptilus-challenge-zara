@@ -1,9 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { BrowserRouter } from "react-router-dom";
 import CartDisplay from "./CartDisplay";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
-import { BrowserRouter } from "react-router-dom";
+import { mockedCart } from "../../mocks/phones/cart";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 vi.mock("../../contexts/CartContext/CartContext", () => ({
@@ -23,15 +24,12 @@ describe("CartDisplay", () => {
     );
 
     const cartList = screen.queryByRole("list");
+
     expect(cartList).toBeNull();
   });
 
   it("renders items in the cart", () => {
-    const mockCart = [
-      { name: "Phone 1", price: 100 },
-      { name: "Phone 2", price: 200 },
-    ];
-    useCartInformation.mockReturnValue({ cart: mockCart });
+    useCartInformation.mockReturnValue({ cart: mockedCart });
 
     const mockUseCartContext = {
       addPhoneToCart: vi.fn(),
@@ -46,7 +44,7 @@ describe("CartDisplay", () => {
       </BrowserRouter>
     );
 
-    mockCart.forEach((phone) => {
+    mockedCart.forEach((phone) => {
       expect(screen.getByText(phone.name)).toBeInTheDocument();
     });
   });
