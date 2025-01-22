@@ -16,7 +16,6 @@ import {
   mockUseSearchPhoneInitial,
   mockUseSearchPhoneWithQuery,
 } from "../../mocks/hooks/useSearchPhone";
-import {} from "../../mocks/hooks/hooks";
 
 import {
   mockUsePhones,
