@@ -109,4 +109,20 @@ describe("useSearchPhone", () => {
 
     expect(result.current.debouncedQuery).toBe("new query");
   });
+
+  it("should update searchQuery immediately", () => {
+    const { result } = renderHook(() => useSearchPhone());
+
+    act(() => {
+      result.current.setSearchQuery("new query");
+    });
+
+    expect(result.current.searchQuery).toBe("new query");
+
+    act(() => {
+      result.current.handlerClear();
+    });
+
+    expect(result.current.searchQuery).toBe("");
+  });
 });

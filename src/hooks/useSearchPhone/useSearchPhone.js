@@ -4,6 +4,10 @@ export const useSearchPhone = (initialValue = "", delay = 500) => {
   const [searchQuery, setSearchQuery] = useState(initialValue);
   const [debouncedQuery, setDebouncedQuery] = useState(initialValue);
 
+  const handlerClear = () => {
+    setSearchQuery("");
+  };
+
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(searchQuery);
@@ -18,5 +22,6 @@ export const useSearchPhone = (initialValue = "", delay = 500) => {
     searchQuery,
     setSearchQuery,
     debouncedQuery,
+    handlerClear,
   };
 };
