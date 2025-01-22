@@ -37,12 +37,14 @@ describe("cartServices", () => {
   describe("removePhoneFromLocalStorage", () => {
     it("should remove the phone with the given id from the cart", () => {
       const cart = [
-        { id: 1, name: "Phone 1" },
-        { id: 2, name: "Phone 2" },
+        { id: 1, name: "Phone 1", cartId: 1 },
+        { id: 2, name: "Phone 2", cartId: 2 },
       ];
       localStorage.setItem("cart", JSON.stringify(cart));
       removePhoneFromLocalStorage(1);
-      expect(getCartFromLocalStorage()).toEqual([{ id: 2, name: "Phone 2" }]);
+      expect(getCartFromLocalStorage()).toEqual([
+        { id: 2, name: "Phone 2", cartId: 2 },
+      ]);
     });
 
     it("should do nothing if the phone id is not in the cart", () => {
