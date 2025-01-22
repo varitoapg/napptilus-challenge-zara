@@ -14,6 +14,7 @@ vi.mock("../../contexts/CartContext/CartContext", () => ({
 describe("PhoneDetailPage", () => {
   beforeEach(() => {
     useCartContext.mockReturnValue({
+      cart: [],
       addPhoneToCart: vi.fn(),
       removePhoneFromCart: vi.fn(),
     });
@@ -48,7 +49,11 @@ describe("PhoneDetailPage", () => {
   it("does not render content when phoneDetails is not available", () => {
     usePhoneDetails.mockReturnValue({ phoneDetails: null });
 
-    render(<PhoneDetailPage />);
+    render(
+      <BrowserRouter>
+        <PhoneDetailPage />
+      </BrowserRouter>
+    );
 
     expect(screen.queryByText("Similar Items")).not.toBeInTheDocument();
   });
