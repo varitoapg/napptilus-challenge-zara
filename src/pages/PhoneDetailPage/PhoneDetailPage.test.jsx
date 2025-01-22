@@ -33,7 +33,7 @@ describe("PhoneDetailPage", () => {
       ],
     };
 
-    usePhoneDetails.mockReturnValue({ phoneDetails: mockPhoneDetails });
+    usePhoneDetails.mockReturnValueOnce({ phoneDetails: mockPhoneDetails });
 
     render(
       <BrowserRouter>
@@ -47,7 +47,7 @@ describe("PhoneDetailPage", () => {
   });
 
   it("does not render content when phoneDetails is not available", () => {
-    usePhoneDetails.mockReturnValue({ phoneDetails: null });
+    usePhoneDetails.mockReturnValueOnce({ phoneDetails: null });
 
     render(
       <BrowserRouter>
@@ -56,5 +56,38 @@ describe("PhoneDetailPage", () => {
     );
 
     expect(screen.queryByText("Similar Items")).not.toBeInTheDocument();
+  });
+
+  it("renders Loader when loading is true", () => {
+    usePhoneDetails.mockReturnValueOnce({ phoneDetails: null, loading: true });
+
+    render(
+      <BrowserRouter>
+        <PhoneDetailPage />
+      </BrowserRouter>
+    );
+
+    const loader = screen.getByTestId("loader");
+
+    expect(loader).toBeInTheDocument();
+  });
+
+  it("renders an error card when error happens", () => {
+    const errorMessage = "Phone not found";
+    usePhoneDetails.mockReturnValueOnce({
+      phoneDetails: null,
+      loading: false,
+      error: errorMessage,
+    });
+
+    render(
+      <BrowserRouter>
+        <PhoneDetailPage />
+      </BrowserRouter>
+    );
+
+    const errorCard = screen.getByText(errorMessage);
+
+    expect(errorCard).toBeInTheDocument();
   });
 });
