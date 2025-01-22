@@ -1,8 +1,13 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import Header from "./Header";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import {
+  mockUseCartInformationEmpty,
+  mockUseCartInformationVisible,
+  mockUseCartInformationWithPurchases,
+} from "../../mocks/hooks/hooks";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 
@@ -10,11 +15,9 @@ describe("Header", () => {
   beforeEach(cleanup);
 
   it("should render the logo", () => {
-    useCartInformation.mockReturnValue({
-      isCartVisible: false,
-      havePurchases: false,
-      phonesInCart: 0,
-    });
+    const expectedLogoTestId = "logo";
+
+    useCartInformation.mockReturnValue(mockUseCartInformationEmpty);
 
     render(
       <MemoryRouter initialEntries={["/phone/123"]}>
@@ -22,17 +25,17 @@ describe("Header", () => {
       </MemoryRouter>
     );
 
-    const logo = screen.getByTestId("logo");
+    const logo = screen.getByTestId(expectedLogoTestId);
 
     expect(logo).not.toBeNull();
   });
 
   it("should not render the cart when isCartVisible is false", () => {
-    useCartInformation.mockReturnValue({
-      isCartVisible: false,
-      havePurchases: false,
-      phonesInCart: 0,
-    });
+    const expectedPhonesInCart = "0";
+    const expectedEmptyCartIconTestId = "empty-cart-icon";
+    const expectedFullCartIconTestId = "full-cart-icon";
+
+    useCartInformation.mockReturnValue(mockUseCartInformationEmpty);
 
     render(
       <BrowserRouter>
@@ -40,9 +43,9 @@ describe("Header", () => {
       </BrowserRouter>
     );
 
-    const phonesInCart = screen.queryByText("0");
-    const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
-    const fullCartIcon = screen.queryByTestId("full-cart-icon");
+    const phonesInCart = screen.queryByText(expectedPhonesInCart);
+    const emptyCartIcon = screen.queryByTestId(expectedEmptyCartIconTestId);
+    const fullCartIcon = screen.queryByTestId(expectedFullCartIconTestId);
 
     expect(phonesInCart).toBeNull();
     expect(emptyCartIcon).toBeNull();
@@ -50,11 +53,11 @@ describe("Header", () => {
   });
 
   it("should render the empty cart icon when there are no purchases", () => {
-    useCartInformation.mockReturnValue({
-      isCartVisible: true,
-      havePurchases: false,
-      phonesInCart: 0,
-    });
+    const expectedPhonesInCart = "0";
+    const expectedEmptyCartIconTestId = "empty-cart-icon";
+    const expectedFullCartIconTestId = "full-cart-icon";
+
+    useCartInformation.mockReturnValue(mockUseCartInformationVisible);
 
     render(
       <BrowserRouter>
@@ -62,9 +65,9 @@ describe("Header", () => {
       </BrowserRouter>
     );
 
-    const phonesInCart = screen.queryByText("0");
-    const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
-    const fullCartIcon = screen.queryByTestId("full-cart-icon");
+    const phonesInCart = screen.queryByText(expectedPhonesInCart);
+    const emptyCartIcon = screen.queryByTestId(expectedEmptyCartIconTestId);
+    const fullCartIcon = screen.queryByTestId(expectedFullCartIconTestId);
 
     expect(phonesInCart).not.toBeNull();
     expect(emptyCartIcon).not.toBeNull();
@@ -72,11 +75,11 @@ describe("Header", () => {
   });
 
   it("should render the full cart icon when there are purchases", () => {
-    useCartInformation.mockReturnValue({
-      isCartVisible: true,
-      havePurchases: true,
-      phonesInCart: 3,
-    });
+    const expectedPhonesInCart = "3";
+    const expectedEmptyCartIconTestId = "empty-cart-icon";
+    const expectedFullCartIconTestId = "full-cart-icon";
+
+    useCartInformation.mockReturnValue(mockUseCartInformationWithPurchases);
 
     render(
       <BrowserRouter>
@@ -84,9 +87,9 @@ describe("Header", () => {
       </BrowserRouter>
     );
 
-    const phonesInCart = screen.queryByText("3");
-    const emptyCartIcon = screen.queryByTestId("empty-cart-icon");
-    const fullCartIcon = screen.queryByTestId("full-cart-icon");
+    const phonesInCart = screen.queryByText(expectedPhonesInCart);
+    const emptyCartIcon = screen.queryByTestId(expectedEmptyCartIconTestId);
+    const fullCartIcon = screen.queryByTestId(expectedFullCartIconTestId);
 
     expect(phonesInCart).not.toBeNull();
     expect(emptyCartIcon).toBeNull();
