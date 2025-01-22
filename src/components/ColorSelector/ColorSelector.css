@@ -25,7 +25,7 @@
 }
 
 .color-selector__item--selected {
-  border-color: var(--main-black);
+  border-color: var(--main-dark);
 }
 
 .color-selector__inner {

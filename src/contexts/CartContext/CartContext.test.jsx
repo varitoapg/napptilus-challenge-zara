@@ -41,7 +41,7 @@ describe("CartContext", () => {
   });
 
   it("should remove a phone from the cart", () => {
-    const phone = { id: "1", name: "Phone 1" };
+    const phone = { id: "1", name: "Phone 1", cartId: "1" };
     getCartFromLocalStorage.mockReturnValue([phone]);
 
     render(
@@ -55,6 +55,6 @@ describe("CartContext", () => {
     });
 
     expect(screen.getByText("0")).toBeInTheDocument();
-    expect(removePhoneFromLocalStorage).toHaveBeenCalledWith(phone.id);
+    expect(removePhoneFromLocalStorage).toHaveBeenCalledWith("1");
   });
 });

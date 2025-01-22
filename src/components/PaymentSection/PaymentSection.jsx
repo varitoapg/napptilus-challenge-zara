@@ -15,7 +15,7 @@ function PaymentSection() {
         {cart.length > 0 && (
           <div className="payment-section__total">
             <p>Total</p>
-            <p>{totalPrice} EUR</p>
+            <p className="payment-section__total--euros">{totalPrice} EUR</p>
           </div>
         )}
         <div className="payment-section__buttons">
@@ -41,7 +41,7 @@ function PaymentSection() {
         <div className="payment-section__total-and-buttons">
           <div className="payment-section__total">
             <p>Total</p>
-            <p>123 EUR</p>
+            <p className="payment-section__total--euros">{totalPrice} EUR</p>
           </div>
           <Button className="custom-button black">Pay</Button>
         </div>

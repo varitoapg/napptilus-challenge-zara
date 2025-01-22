@@ -6,17 +6,27 @@
 .custom-button {
   width: 244px;
 }
+
 .payment-section__total-and-buttons {
   display: flex;
   align-items: baseline;
   gap: 20px;
+  width: 40%;
+  text-transform: uppercase;
 }
 
 .payment-section__total {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
   gap: 10px;
   font-size: var(--font-size-small);
   font-weight: 400;
+}
+
+.payment-section__total--euros {
+  width: max-content;
 }
 
 .payment-section__buttons {
@@ -27,6 +37,22 @@
 }
 
 @media (max-width: 768px) {
+  .custom-button.black {
+    width: 260px;
+  }
+
+  .custom-button.white {
+    width: 200px;
+  }
+
+  .payment-section__total-and-buttons {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    text-transform: uppercase;
+  }
 }
 
 @media (max-width: 569px) {

@@ -4,6 +4,7 @@ import { useCartActions } from "../useCartActions/useCartActions";
 import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
 
 vi.mock("../useCartActions/useCartActions");
+vi.mock("uuid", () => ({ v4: () => "unique-cart-id" }));
 vi.mock("react-router-dom", () => ({
   useParams: () => ({ phoneId: "Initial-Phone-id" }),
 }));
@@ -100,6 +101,7 @@ describe("usePhoneSelector", () => {
       imageUrl: "image-url-1",
       capacity: "128GB",
       price: 999,
+      cartId: "unique-cart-id",
     });
   });
 });

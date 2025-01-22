@@ -32,7 +32,7 @@
 .phone-form__image {
   width: 510px;
   height: 630px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .phone-form__body {

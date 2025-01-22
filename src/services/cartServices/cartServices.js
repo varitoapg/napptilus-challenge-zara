@@ -7,10 +7,10 @@ export const saveCartToLocalStorage = (cart) => {
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
-export const removePhoneFromLocalStorage = (phoneId) => {
+export const removePhoneFromLocalStorage = (cartId) => {
   const cart = getCartFromLocalStorage();
 
-  const updatedCart = cart.filter((phone) => phone.id !== phoneId);
+  const updatedCart = cart.filter((phone) => phone.cartId !== cartId);
 
   saveCartToLocalStorage(updatedCart);
 };

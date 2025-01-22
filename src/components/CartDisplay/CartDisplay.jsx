@@ -10,7 +10,7 @@ function CartDisplay() {
       {cart.length > 0 && (
         <ul className="cart-list">
           {cart.map((phone) => (
-            <li key={phone.name}>
+            <li key={phone.cartId}>
               <ItemInCart phone={phone} />
             </li>
           ))}
