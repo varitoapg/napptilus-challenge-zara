@@ -92,14 +92,14 @@ export const mockedSimilarPhones = [
 
 export const mockedPhoneList = [
   {
-    id: 1,
+    id: "1",
     name: "Phone 1",
     brand: "Brand A",
     basePrice: 100,
     imageUrl: "http://example.com/phone1.jpg",
   },
   {
-    id: 2,
+    id: "2",
     name: "Phone 2",
     brand: "Brand B",
     basePrice: 200,
@@ -109,7 +109,7 @@ export const mockedPhoneList = [
 
 export const mockedPhoneListWIthExtraFields = [
   {
-    id: 1,
+    id: "1",
     name: "Phone 1",
     brand: "Brand A",
     basePrice: 100,
@@ -117,7 +117,7 @@ export const mockedPhoneListWIthExtraFields = [
     extraField: "extraValue1",
   },
   {
-    id: 2,
+    id: "2",
     name: "Phone 2",
     brand: "Brand B",
     basePrice: 200,
