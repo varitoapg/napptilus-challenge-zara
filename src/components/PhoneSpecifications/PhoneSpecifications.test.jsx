@@ -2,32 +2,27 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { describe, it, expect, beforeEach } from "vitest";
 import PhoneSpecifications from "./PhoneSpecifications";
 import { addSpaceBeforeUppercase } from "../../utils/strings/strings";
+import { mockedSpecifications } from "../../mocks/specifications/specifications";
 
 describe("PhoneSpecifications", () => {
   beforeEach(cleanup);
 
-  const mockSpecifications = {
-    screenSize: "6.1 inches",
-    battery: "3110 mAh",
-    camera: "12 MP",
-  };
-
   it("renders without crashing", () => {
-    render(<PhoneSpecifications phoneSpecifications={mockSpecifications} />);
+    render(<PhoneSpecifications phoneSpecifications={mockedSpecifications} />);
   });
 
   it("displays the correct number of specifications", () => {
-    render(<PhoneSpecifications phoneSpecifications={mockSpecifications} />);
+    render(<PhoneSpecifications phoneSpecifications={mockedSpecifications} />);
 
     const items = screen.getAllByRole("listitem");
 
-    expect(items).toHaveLength(Object.keys(mockSpecifications).length);
+    expect(items).toHaveLength(Object.keys(mockedSpecifications).length);
   });
 
   it("displays the correct specification titles and descriptions", () => {
-    render(<PhoneSpecifications phoneSpecifications={mockSpecifications} />);
+    render(<PhoneSpecifications phoneSpecifications={mockedSpecifications} />);
 
-    Object.entries(mockSpecifications).forEach(([key, value]) => {
+    Object.entries(mockedSpecifications).forEach(([key, value]) => {
       expect(
         screen.getByText(addSpaceBeforeUppercase(key))
       ).toBeInTheDocument();
