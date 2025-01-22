@@ -1,13 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import EmptyCartIcon from "../EmptyCartIcon/EmptyCartIcon";
 import FullCartIcon from "../FullCartIcon/FullCartIcon";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
 import Logo from "../Logo/Logo";
 import "./Header.css";
-import LeftChevronIcon from "../LeftChevronIcon/LeftChevronIcon";
 
-function Header() {
-  const { pathname } = useLocation();
+function Header({ children }) {
   const { isCartVisible, phonesInCart } = useCartInformation();
 
   return (
@@ -23,14 +22,13 @@ function Header() {
           </Link>
         )}
       </div>
-      {pathname.includes("/phone") && (
-        <Link to="/" className="header__back-link">
-          <LeftChevronIcon />
-          <p>back</p>
-        </Link>
-      )}
+      {children}
     </header>
   );
 }
+
+Header.propTypes = {
+  children: PropTypes.element,
+};
 
 export default Header;

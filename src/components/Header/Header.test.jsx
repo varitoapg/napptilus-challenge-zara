@@ -23,10 +23,8 @@ describe("Header", () => {
     );
 
     const logo = screen.getByTestId("logo");
-    const backLink = screen.queryByTestId("left-chevron-icon");
 
     expect(logo).not.toBeNull();
-    expect(backLink).toBeInTheDocument();
   });
 
   it("should not render the cart when isCartVisible is false", () => {
