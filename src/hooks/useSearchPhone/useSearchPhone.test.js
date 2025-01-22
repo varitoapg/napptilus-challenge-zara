@@ -3,6 +3,9 @@ import { describe, it, expect, vi } from "vitest";
 import { useSearchPhone } from "./useSearchPhone";
 
 describe("useSearchPhone", () => {
+  const newQuery = "new query";
+  const delay = 500;
+
   vi.useFakeTimers();
 
   it("should initialize with default values", () => {
@@ -13,41 +16,42 @@ describe("useSearchPhone", () => {
   });
 
   it("should initialize with provided initial value", () => {
-    const { result } = renderHook(() => useSearchPhone("initial"));
+    const initialValue = "initial";
+    const { result } = renderHook(() => useSearchPhone(initialValue));
 
-    expect(result.current.searchQuery).toBe("initial");
-    expect(result.current.debouncedQuery).toBe("initial");
+    expect(result.current.searchQuery).toBe(initialValue);
+    expect(result.current.debouncedQuery).toBe(initialValue);
   });
 
   it("should update searchQuery immediately", () => {
     const { result } = renderHook(() => useSearchPhone());
 
     act(() => {
-      result.current.setSearchQuery("new query");
+      result.current.setSearchQuery(newQuery);
     });
 
-    expect(result.current.searchQuery).toBe("new query");
+    expect(result.current.searchQuery).toBe(newQuery);
   });
 
   it("should update debouncedQuery after delay", () => {
-    const { result } = renderHook(() => useSearchPhone("", 500));
+    const { result } = renderHook(() => useSearchPhone("", delay));
 
     act(() => {
-      result.current.setSearchQuery("new query");
+      result.current.setSearchQuery(newQuery);
     });
 
     act(() => {
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(delay);
     });
 
-    expect(result.current.debouncedQuery).toBe("new query");
+    expect(result.current.debouncedQuery).toBe(newQuery);
   });
 
   it("should not update debouncedQuery if delay has not passed", () => {
-    const { result } = renderHook(() => useSearchPhone("", 500));
+    const { result } = renderHook(() => useSearchPhone("", delay));
 
     act(() => {
-      result.current.setSearchQuery("new query");
+      result.current.setSearchQuery(newQuery);
     });
 
     act(() => {
@@ -58,10 +62,13 @@ describe("useSearchPhone", () => {
   });
 
   it("should handle rapid consecutive updates correctly", () => {
-    const { result } = renderHook(() => useSearchPhone("", 500));
+    const firstQuery = "query1";
+    const secondQuery = "query2";
+
+    const { result } = renderHook(() => useSearchPhone("", delay));
 
     act(() => {
-      result.current.setSearchQuery("query1");
+      result.current.setSearchQuery(firstQuery);
     });
 
     act(() => {
@@ -69,7 +76,7 @@ describe("useSearchPhone", () => {
     });
 
     act(() => {
-      result.current.setSearchQuery("query2");
+      result.current.setSearchQuery(secondQuery);
     });
 
     act(() => {
@@ -87,37 +94,37 @@ describe("useSearchPhone", () => {
     const { result, rerender } = renderHook(
       ({ delay }) => useSearchPhone("", delay),
       {
-        initialProps: { delay: 500 },
+        initialProps: { delay },
       }
     );
 
     act(() => {
-      result.current.setSearchQuery("new query");
+      result.current.setSearchQuery(newQuery);
     });
 
     rerender({ delay: 1000 });
 
     act(() => {
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(delay);
     });
 
     expect(result.current.debouncedQuery).toBe("");
 
     act(() => {
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(delay);
     });
 
-    expect(result.current.debouncedQuery).toBe("new query");
+    expect(result.current.debouncedQuery).toBe(newQuery);
   });
 
   it("should update searchQuery immediately", () => {
     const { result } = renderHook(() => useSearchPhone());
 
     act(() => {
-      result.current.setSearchQuery("new query");
+      result.current.setSearchQuery(newQuery);
     });
 
-    expect(result.current.searchQuery).toBe("new query");
+    expect(result.current.searchQuery).toBe(newQuery);
 
     act(() => {
       result.current.handlerClear();
