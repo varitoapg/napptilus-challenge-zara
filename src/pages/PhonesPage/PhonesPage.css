@@ -15,7 +15,7 @@
 }
 .phones-page__results-count {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
   font-weight: 300;
 }
 

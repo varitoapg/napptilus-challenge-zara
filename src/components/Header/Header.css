@@ -2,7 +2,7 @@
   padding: 20px 80px;
   position: sticky;
   top: 0;
-  background-color: white;
+  background-color: var(--main-white);
   z-index: 1000;
 }
 
@@ -13,13 +13,12 @@
 }
 
 .header__logo {
-  font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .header__cart-link {
-  font-size: 16px;
+  font-size: var(--font-size-medium);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -34,7 +33,7 @@
   text-transform: uppercase;
   color: inherit;
   margin-top: 40px;
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
 }
 
 @media (max-width: 768px) {

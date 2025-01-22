@@ -1,6 +1,6 @@
 .phone-specfications__title {
   font-weight: normal;
-  font-size: 20px;
+  font-size: var(--font-size-large);
   text-transform: uppercase;
   margin-bottom: 40px;
   line-height: 24px;
@@ -12,7 +12,7 @@
 }
 
 .phone-specifications__item {
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 20px 0;
@@ -55,10 +55,10 @@
 
   .phone-specifications__title {
     font-weight: normal;
-    font-size: 12px;
+    font-size: var(--font-size-extra-small);
   }
 
   .phone-specifications__description {
-    font-size: 12px;
+    font-size: var(--font-size-extra-small);
   }
 }
