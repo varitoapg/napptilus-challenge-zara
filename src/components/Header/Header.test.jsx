@@ -7,7 +7,7 @@ import {
   mockUseCartInformationEmpty,
   mockUseCartInformationVisible,
   mockUseCartInformationWithPurchases,
-} from "../../mocks/hooks/hooks";
+} from "../../mocks/hooks/useCartInformation";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 

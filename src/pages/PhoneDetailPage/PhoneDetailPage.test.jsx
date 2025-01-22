@@ -9,7 +9,7 @@ import {
   mockUsePhoneDetailsWithPhone,
   mockUsePhoneDetailsLoading,
   mockUsePhoneDetailsWithError,
-} from "../../mocks/hooks/hooks";
+} from "../../mocks/hooks/usePhoneDetails";
 import { mockPhoneDetail } from "../../mocks/phones/phones";
 
 vi.mock("../../hooks/usePhoneDetails/usePhoneDetails");

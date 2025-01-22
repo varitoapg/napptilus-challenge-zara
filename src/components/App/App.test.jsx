@@ -2,7 +2,7 @@ import { render, screen, cleanup } from "@testing-library/react";
 import { describe, it, expect, afterEach, vi } from "vitest";
 import { MemoryRouter } from "react-router-dom";
 import { PhoneProvider } from "../../contexts/PhoneContext/PhoneContext";
-import { mockUsePhones } from "../../mocks/hooks/hooks";
+import { mockUsePhones } from "../../mocks/hooks/usePhones";
 import App from "./App.jsx";
 
 describe("App", () => {

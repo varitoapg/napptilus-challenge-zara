@@ -16,11 +16,13 @@ import {
   mockUseSearchPhoneInitial,
   mockUseSearchPhoneWithQuery,
 } from "../../mocks/hooks/useSearchPhone";
+import {} from "../../mocks/hooks/hooks";
+
 import {
   mockUsePhones,
   mockUsePhonesLoading,
   mockUsePhonesWithError,
-} from "../../mocks/hooks/hooks";
+} from "../../mocks/hooks/usePhones";
 import { mockedPhoneList } from "../../mocks/phones/phones";
 
 vi.mock("../../hooks/usePhones/usePhones");

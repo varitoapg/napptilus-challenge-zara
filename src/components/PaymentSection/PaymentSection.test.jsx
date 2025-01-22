@@ -7,7 +7,7 @@ import { useCartActions } from "../../hooks/useCartActions/useCartActions";
 import {
   mockUseCartInformationEmpty,
   mockUseCartInformationWithPurchases,
-} from "../../mocks/hooks/hooks";
+} from "../../mocks/hooks/useCartInformation";
 
 vi.mock("@uidotdev/usehooks");
 vi.mock("../../hooks/useCartInformation/useCartInformation");

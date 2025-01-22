@@ -10,7 +10,7 @@ import {
   mockUsePhoneDetailsLoading,
   mockUsePhoneDetailsWithPhone,
   mockUsePhoneDetailsWithError,
-} from "../../mocks/hooks/hooks";
+} from "../../mocks/hooks/usePhoneDetails";
 
 vi.mock("../../contexts/PhoneContext/PhoneContext", () => ({
   usePhoneContext: vi.fn(),
