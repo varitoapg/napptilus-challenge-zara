@@ -9,7 +9,7 @@ function PhoneSpecifications({ phoneSpecifications }) {
       <ul className="phone-specifications__list">
         {Object.entries(phoneSpecifications).map(([key, value]) => (
           <li key={key} className="phone-specifications__item">
-            <h3 className="phone-specifications__title">
+            <h3 className="phone-specifications__item-title">
               {addSpaceBeforeUppercase(key)}
             </h3>
             <span className="phone-specifications__description">{value}</span>

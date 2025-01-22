@@ -5,7 +5,7 @@ function ColorSelector({ colorOptions, handleSelection, selectedColor }) {
   return (
     <div className="color-selector">
       <label className="color-selector__title" htmlFor="color-selector">
-        Color, pick your favourite
+        Color, pick your favourite.
       </label>
       <div className="color-selector__container" id="color-selector">
         {colorOptions.map((option) => (

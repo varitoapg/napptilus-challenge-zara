@@ -4,7 +4,7 @@ import "./PhoneCardList.css";
 
 function PhoneCardList({ phones, isHorizontal = false, title = "" }) {
   return (
-    <>
+    <div>
       {title && <h2 className="phone-card-list__title">{title}</h2>}
       <div
         className={isHorizontal ? "phone-grid-horizontal" : "phone-grid"}
@@ -18,7 +18,7 @@ function PhoneCardList({ phones, isHorizontal = false, title = "" }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
