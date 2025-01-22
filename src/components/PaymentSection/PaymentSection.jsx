@@ -1,5 +1,5 @@
 import { useWindowSize } from "@uidotdev/usehooks";
-import Button from "../Button/Button";
+import Button from "../UI/Button/Button";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
 import { useCartActions } from "../../hooks/useCartActions/useCartActions";
 import "./PaymentSection.css";
