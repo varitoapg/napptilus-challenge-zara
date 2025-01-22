@@ -1,14 +1,16 @@
 .phone-form {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 30px;
 }
 
 .phone-form__content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
   text-transform: uppercase;
+  width: 380px;
 }
 
 .phone-form__header {
@@ -23,16 +25,33 @@
   font-size: 20px;
 }
 
+.phone-form__header--price {
+  text-transform: none;
+}
+
 .phone-form__image {
   width: 510px;
   height: 630px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .phone-form__body {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
+}
+
+.custom-button {
+  font-size: 12px;
+  height: 56px;
+}
+
+.custom-button.disabled {
+  width: 100%;
+}
+
+.custom-button.black {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

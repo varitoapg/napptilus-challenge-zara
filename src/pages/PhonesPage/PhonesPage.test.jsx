@@ -8,6 +8,7 @@ import {
 import { vi, describe, beforeEach, expect, it, afterEach } from "vitest";
 import PhonesPage from "./PhonesPage";
 import { PhoneProvider } from "../../contexts/PhoneContext/PhoneContext";
+import { CartProvider } from "../../contexts/CartContext/CartContext";
 import { usePhones } from "../../hooks/usePhones/usePhones";
 import { useSearchPhone } from "../../hooks/useSearchPhone/useSearchPhone";
 import { BrowserRouter } from "react-router-dom";
@@ -38,7 +39,9 @@ describe("PhonesPage", () => {
     render(
       <BrowserRouter>
         <PhoneProvider>
-          <PhonesPage />
+          <CartProvider>
+            <PhonesPage />
+          </CartProvider>
         </PhoneProvider>
       </BrowserRouter>
     );
@@ -64,11 +67,12 @@ describe("PhonesPage", () => {
       setSearchQuery: mockSetSearchQuery,
       debouncedQuery: "Phone 1",
     });
-
     render(
       <BrowserRouter>
         <PhoneProvider>
-          <PhonesPage />
+          <CartProvider>
+            <PhonesPage />
+          </CartProvider>
         </PhoneProvider>
       </BrowserRouter>
     );

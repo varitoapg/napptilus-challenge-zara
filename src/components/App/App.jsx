@@ -1,15 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import PhonesPage from "../../pages/PhonesPage/PhonesPage";
 import PhoneDetailPage from "../../pages/PhoneDetailPage/PhoneDetailPage";
-import Header from "../Header/Header";
 import CartPage from "../../pages/CartPage/CartPage";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Header />
-
       <Routes>
         <Route path="/" element={<PhonesPage />} />
         <Route path="/phone/:phoneId" element={<PhoneDetailPage />} />

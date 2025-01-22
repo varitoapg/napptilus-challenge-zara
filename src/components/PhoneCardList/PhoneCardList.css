@@ -6,9 +6,11 @@
 
 .phone-card-list__title {
   text-transform: uppercase;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
+  margin-bottom: 40px;
 }
+
 .phone-grid-horizontal {
   display: flex;
   overflow-x: auto;
@@ -18,4 +20,7 @@
   flex-wrap: nowrap;
   width: 100%;
   -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #888888 transparent;
 }

@@ -1,7 +1,15 @@
 .header {
+  padding: 20px 80px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
+}
+
+.header__content {
   display: flex;
   justify-content: space-between;
-  padding: 20px 80px;
+  margin-bottom: 40px;
 }
 
 .header__logo {
@@ -10,14 +18,23 @@
   text-transform: uppercase;
 }
 
-/* .header__cart {
-} */
 .header__cart-link {
   font-size: 16px;
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
+}
+
+.header__back-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: inherit;
+  margin-top: 40px;
+  font-size: 12px;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,6 @@
 .phone-specfications__title {
   font-weight: normal;
-  font-size: 24px;
+  font-size: 20px;
   text-transform: uppercase;
   margin-bottom: 40px;
   line-height: 24px;
@@ -12,11 +12,17 @@
 }
 
 .phone-specifications__item {
+  font-size: 12px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   padding: 20px 0;
   text-transform: uppercase;
   border-bottom: 1px solid #000000;
+}
+
+.phone-specifications__item-title {
+  font-size: inherit;
+  font-weight: 300;
 }
 
 .phone-specifications__item:first-child {
@@ -29,11 +35,6 @@
 
 .phone-specifications__item:not(:first-child):not(:last-child) {
   border-top: none;
-}
-
-.phone-specifications__title {
-  font-weight: normal;
-  font-size: 16px;
 }
 
 .phone-specifications__description {

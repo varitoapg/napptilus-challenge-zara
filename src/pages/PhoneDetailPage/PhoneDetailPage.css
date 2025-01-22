@@ -5,11 +5,21 @@
 .phone-detail-page__content {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 100px;
+  width: 75%;
+  margin: 40px auto;
 }
 
 @media (max-width: 425px) {
   .phone-detail-page {
     padding: 10px 10px;
+  }
+
+  .phone-detail-page__content {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    width: 100%;
+    margin: auto;
   }
 }

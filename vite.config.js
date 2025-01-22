@@ -8,10 +8,11 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: "src/setupTest.js",
+    exclude: ["e2e/**/*", "**/node_modules/**"], // Exclude Playwright tests from Vitest
     coverage: {
       provider: "v8",
       include: ["src/**/*.{js,jsx,ts,tsx}"],
-      exclude: ["src/main.jsx"],
+      exclude: ["src/main.jsx", "**/e2e/**/*"],
       reporter: ["lcov", "text"],
     },
   },

@@ -2,7 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
 import Header from "./Header";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 
@@ -17,9 +17,9 @@ describe("Header", () => {
     });
 
     render(
-      <BrowserRouter>
+      <MemoryRouter initialEntries={["/phone/123"]}>
         <Header />
-      </BrowserRouter>
+      </MemoryRouter>
     );
 
     const logo = screen.getByTestId("logo");
