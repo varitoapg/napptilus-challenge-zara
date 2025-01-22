@@ -1,4 +1,5 @@
 import { mockedPhoneList, mockPhoneDetail } from "../phones/phones";
+import { mockedCart } from "../cart/cart";
 import { vi } from "vitest";
 
 export const mockUsePhones = {
@@ -48,5 +49,5 @@ export const mockUseCartInformationWithPurchases = {
   havePurchases: true,
   phonesInCart: 3,
   totalPrice: 300,
-  cart: mockedPhoneList,
+  cart: mockedCart,
 };
