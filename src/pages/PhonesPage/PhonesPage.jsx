@@ -3,14 +3,15 @@ import { useSearchPhone } from "../../hooks/useSearchPhone/useSearchPhone";
 import PhoneCardList from "../../components/PhoneCardList/PhoneCardList";
 import SearchPhoneInput from "../../components/SearchPhoneInput/SearchPhoneInput";
 import "./PhonesPage.css";
+import Header from "../../components/Header/Header";
 
 function PhonesPage() {
   const { searchQuery, setSearchQuery, debouncedQuery } = useSearchPhone();
   const { phones, totalPhones } = usePhones(debouncedQuery);
 
   return (
-    <main className="phones-page">
-      <div className="phones-page__content">
+    <>
+      <Header>
         <div className="phones-page__search-wrapper">
           <SearchPhoneInput
             searchQuery={searchQuery}
@@ -18,10 +19,13 @@ function PhonesPage() {
           />
           <p className="phones-page__results-count">{totalPhones} results</p>
         </div>
-
-        <PhoneCardList phones={phones} />
-      </div>
-    </main>
+      </Header>
+      <main className="phones-page">
+        <div className="phones-page__content">
+          <PhoneCardList phones={phones} />
+        </div>
+      </main>
+    </>
   );
 }
 
