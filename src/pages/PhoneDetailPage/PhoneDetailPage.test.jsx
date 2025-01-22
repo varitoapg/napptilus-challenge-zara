@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import PhoneDetailPage from "./PhoneDetailPage";
 import { usePhoneDetails } from "../../hooks/usePhoneDetails/usePhoneDetails";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
-import { mockUseCartContextEmpty } from "../../mocks/contexts/useCartContext";
+import { mockUseCartContextEmpty } from "../../mocks/contexts/CartContext";
 import {
   mockUsePhoneDetailsWithPhone,
   mockUsePhoneDetailsLoading,

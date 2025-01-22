@@ -9,7 +9,7 @@ import {
   mockUsePhoneContextLoading,
   mockUsePhoneContextWithPhones,
   mockUsePhoneContextWithError,
-} from "../../mocks/contexts/usePhoneContext";
+} from "../../mocks/contexts/PhoneContext";
 import { mockedPhoneList } from "../../mocks/phones/phones";
 
 vi.mock("../../contexts/PhoneContext/PhoneContext", () => ({
