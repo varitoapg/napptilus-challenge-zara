@@ -23,19 +23,20 @@ describe("PhonesPage", () => {
       setSearchQuery: vi.fn(),
       debouncedQuery: "",
     });
-
-    usePhones.mockReturnValue({
-      phones: [
-        { id: 1, name: "Phone 1" },
-        { id: 2, name: "Phone 2" },
-      ],
-      totalPhones: 2,
-    });
   });
 
   afterEach(cleanup);
 
   it("should render search input and phone list", async () => {
+    usePhones.mockReturnValueOnce({
+      phones: [
+        { id: 1, name: "Phone 1" },
+        { id: 2, name: "Phone 2" },
+      ],
+      totalPhones: 2,
+      loading: false,
+      error: null,
+    });
     render(
       <BrowserRouter>
         <PhoneProvider>
@@ -86,5 +87,51 @@ describe("PhonesPage", () => {
 
       expect(screen.getByText(/1 results/)).not.toBeNull();
     });
+  });
+
+  it("should show loader when loading", async () => {
+    usePhones.mockReturnValueOnce({
+      phones: [],
+      totalPhones: 0,
+      loading: true,
+      error: null,
+    });
+
+    render(
+      <BrowserRouter>
+        <PhoneProvider>
+          <CartProvider>
+            <PhonesPage />
+          </CartProvider>
+        </PhoneProvider>
+      </BrowserRouter>
+    );
+
+    const loader = screen.getByTestId("loader");
+
+    expect(loader).not.toBeNull();
+  });
+
+  it("should show error when an error happens", async () => {
+    usePhones.mockReturnValueOnce({
+      phones: [],
+      totalPhones: 0,
+      loading: true,
+      error: "An error occurred",
+    });
+
+    render(
+      <BrowserRouter>
+        <PhoneProvider>
+          <CartProvider>
+            <PhonesPage />
+          </CartProvider>
+        </PhoneProvider>
+      </BrowserRouter>
+    );
+
+    const error = screen.getByText("An error occurred");
+
+    expect(error).not.toBeNull();
   });
 });
