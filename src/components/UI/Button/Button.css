@@ -9,26 +9,26 @@
 }
 
 .custom-button.white {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  background-color: var(--main-white);
+  color: var(--main-dar);
+  border: 1px solid var(--main-dar);
 }
 
 .custom-button.white:not(.disabled):hover {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--main-dar);
+  color: var(--main-white);
 }
 
 .custom-button.black {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--main-dar);
+  color: var(--main-white);
   border: 1px solid transparent;
 }
 
 .custom-button.black:not(.disabled):hover {
-  background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  background-color: var(--main-white);
+  color: var(--main-dar);
+  border: 1px solid var(--main-dar);
 }
 
 .custom-button.disabled {

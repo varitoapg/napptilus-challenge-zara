@@ -17,7 +17,7 @@
   grid-template-columns: 1fr 2fr;
   padding: 20px 0;
   text-transform: uppercase;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--main-dark);
 }
 
 .phone-specifications__item-title {
@@ -26,11 +26,11 @@
 }
 
 .phone-specifications__item:first-child {
-  border-top: 1px solid #000000;
+  border-top: 1px solid var(--main-dark);
 }
 
 .phone-specifications__item:last-child {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--main-dark);
 }
 
 .phone-specifications__item:not(:first-child):not(:last-child) {
