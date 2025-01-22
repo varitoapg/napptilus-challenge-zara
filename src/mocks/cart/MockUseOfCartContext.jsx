@@ -7,7 +7,7 @@ const MockUseOfCartContext = ({ phone }) => {
     <div>
       <button onClick={() => addPhoneToCart(phone)}>Add Phone</button>
 
-      <button onClick={() => removePhoneFromCart(phone.id)}>
+      <button onClick={() => removePhoneFromCart(phone.cartId)}>
         Remove Phone
       </button>
       <div>{cart.length}</div>
@@ -17,7 +17,7 @@ const MockUseOfCartContext = ({ phone }) => {
 
 MockUseOfCartContext.propTypes = {
   phone: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    cartId: PropTypes.string.isRequired,
   }),
 };
 

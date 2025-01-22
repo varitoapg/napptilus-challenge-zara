@@ -7,6 +7,7 @@ import {
   searchMockedUrl,
   limitOffsetMockedUrl,
 } from "../../mocks/phones/urls";
+import { mockedPhoneList } from "../../mocks/phones/phones";
 
 const mockAxios = new MockAdapter(axios);
 
@@ -16,19 +17,19 @@ describe("phoneServices", () => {
   });
 
   it("should fetch phones with query parameters", async () => {
-    mockAxios.onGet(basicMockedUrl).reply(200, { data: "phones" });
+    mockAxios.onGet(basicMockedUrl).reply(200, { data: mockedPhoneList });
 
     const response = await fetchPhones();
 
-    expect(response).toEqual({ data: "phones" });
+    expect(response).toEqual({ data: mockedPhoneList });
   });
 
   it("should fetch phones with search query", async () => {
     const search = "iphone";
-    mockAxios.onGet(searchMockedUrl).reply(200, { data: "phones with search" });
+    mockAxios.onGet(searchMockedUrl).reply(200, { data: mockedPhoneList });
 
     const response = await fetchPhones(search);
-    expect(response).toEqual({ data: "phones with search" });
+    expect(response).toEqual({ data: mockedPhoneList });
   });
 
   it("should fetch phones with custom limit and offset", async () => {

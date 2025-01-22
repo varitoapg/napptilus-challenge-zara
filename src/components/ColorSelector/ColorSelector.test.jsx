@@ -1,63 +1,69 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import { mockColorOptions } from "../../mocks/colors/colors";
 import ColorSelector from "./ColorSelector";
 
 describe("ColorSelector", () => {
-  const colorOptions = [
-    { hexCode: "#FF0000", name: "Red" },
-    { hexCode: "#00FF00", name: "Green" },
-    { hexCode: "#0000FF", name: "Blue" },
-  ];
-
   const handleSelection = vi.fn();
-  const selectedColor = { hexCode: "#FF0000", name: "Red" };
 
   it("renders color options", () => {
     render(
       <ColorSelector
-        colorOptions={colorOptions}
+        colorOptions={mockColorOptions}
         handleSelection={handleSelection}
-        selectedColor={selectedColor}
+        selectedColor={mockColorOptions[0]}
       />
     );
-    colorOptions.forEach((option) => {
-      expect(screen.getByLabelText(option.name)).toBeInTheDocument();
+    mockColorOptions.forEach((option) => {
+      const expectedLabel = screen.getByLabelText(option.name);
+
+      expect(expectedLabel).toBeInTheDocument();
     });
   });
 
   it("calls handleSelection when a color is clicked", () => {
+    const labelToSelect = mockColorOptions[1].name;
     render(
       <ColorSelector
-        colorOptions={colorOptions}
+        colorOptions={mockColorOptions}
         handleSelection={handleSelection}
-        selectedColor={selectedColor}
+        selectedColor={mockColorOptions[0]}
       />
     );
-    const colorItem = screen.getByLabelText("Green");
+    const colorItem = screen.getByLabelText(labelToSelect);
     fireEvent.click(colorItem);
-    expect(handleSelection).toHaveBeenCalledWith("#00FF00");
+
+    expect(handleSelection).toHaveBeenCalledWith(mockColorOptions[1].hexCode);
   });
 
   it("applies selected class to the selected color", () => {
+    const expectedSelectedColor = mockColorOptions[0].name;
+
     render(
       <ColorSelector
-        colorOptions={colorOptions}
+        colorOptions={mockColorOptions}
         handleSelection={handleSelection}
-        selectedColor={selectedColor}
+        selectedColor={mockColorOptions[0]}
       />
     );
-    const selectedColorItem = screen.getByLabelText("Red");
+
+    const selectedColorItem = screen.getByLabelText(expectedSelectedColor);
+
     expect(selectedColorItem).toHaveClass("color-selector__item--selected");
   });
 
   it("displays the name of the selected color", () => {
+    const expectedLabel = mockColorOptions[0].name;
     render(
       <ColorSelector
-        colorOptions={colorOptions}
+        colorOptions={mockColorOptions}
         handleSelection={handleSelection}
-        selectedColor={selectedColor}
+        selectedColor={mockColorOptions[0]}
       />
     );
-    expect(screen.getByText("Red")).toBeInTheDocument();
+
+    const selectedLabel = screen.getByText(expectedLabel);
+
+    expect(selectedLabel).toBeInTheDocument();
   });
 });

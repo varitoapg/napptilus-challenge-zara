@@ -1,9 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect, beforeEach } from "vitest";
+import { BrowserRouter } from "react-router-dom";
 import PhoneDetailPage from "./PhoneDetailPage";
 import { usePhoneDetails } from "../../hooks/usePhoneDetails/usePhoneDetails";
-import { BrowserRouter } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
+import { mockUseCartContextEmpty } from "../../mocks/contexts/CartContext";
+import {
+  mockUsePhoneDetailsWithPhone,
+  mockUsePhoneDetailsLoading,
+  mockUsePhoneDetailsWithError,
+} from "../../mocks/hooks/usePhoneDetails";
+import { mockPhoneDetail } from "../../mocks/phones/phones";
 
 vi.mock("../../hooks/usePhoneDetails/usePhoneDetails");
 
@@ -13,27 +20,11 @@ vi.mock("../../contexts/CartContext/CartContext", () => ({
 
 describe("PhoneDetailPage", () => {
   beforeEach(() => {
-    useCartContext.mockReturnValue({
-      cart: [],
-      addPhoneToCart: vi.fn(),
-      removePhoneFromCart: vi.fn(),
-    });
+    useCartContext.mockReturnValue(mockUseCartContextEmpty);
   });
 
   it("renders PhoneForm, PhoneSpecifications, and PhoneCardList when phoneDetails is available", () => {
-    const mockPhoneDetails = {
-      colorOptions: ["Black", "White"],
-      name: "Test Phone",
-      basePrice: 999,
-      storageOptions: ["64GB", "128GB"],
-      specs: { screen: "6.1 inch", battery: "3000mAh" },
-      similarProducts: [
-        { id: 1, name: "Similar Phone 1" },
-        { id: 2, name: "Similar Phone 2" },
-      ],
-    };
-
-    usePhoneDetails.mockReturnValueOnce({ phoneDetails: mockPhoneDetails });
+    usePhoneDetails.mockReturnValueOnce(mockUsePhoneDetailsWithPhone);
 
     render(
       <BrowserRouter>
@@ -41,13 +32,19 @@ describe("PhoneDetailPage", () => {
       </BrowserRouter>
     );
 
-    expect(screen.getByText("Test Phone")).toBeInTheDocument();
-    expect(screen.getByText("6.1 inch")).toBeInTheDocument();
-    expect(screen.getByText("Similar Items")).toBeInTheDocument();
+    const expectdPhoneName = screen.getByText(mockPhoneDetail.name);
+    const expectedSpecs = screen.getByText(mockPhoneDetail.specs.screen);
+    const expectedSimilarItems = screen.getByText(
+      mockPhoneDetail.similarProducts[0].name
+    );
+
+    expect(expectdPhoneName).toBeInTheDocument();
+    expect(expectedSpecs).toBeInTheDocument();
+    expect(expectedSimilarItems).toBeInTheDocument();
   });
 
   it("does not render content when phoneDetails is not available", () => {
-    usePhoneDetails.mockReturnValueOnce({ phoneDetails: null });
+    usePhoneDetails.mockReturnValueOnce(mockUsePhoneDetailsLoading);
 
     render(
       <BrowserRouter>
@@ -55,11 +52,16 @@ describe("PhoneDetailPage", () => {
       </BrowserRouter>
     );
 
-    expect(screen.queryByText("Similar Items")).not.toBeInTheDocument();
+    const expectedSimilarItems = screen.queryByText(
+      mockPhoneDetail.similarProducts[0].name
+    );
+
+    expect(expectedSimilarItems).not.toBeInTheDocument();
   });
 
   it("renders Loader when loading is true", () => {
-    usePhoneDetails.mockReturnValueOnce({ phoneDetails: null, loading: true });
+    const loaderTestId = "loader";
+    usePhoneDetails.mockReturnValueOnce(mockUsePhoneDetailsLoading);
 
     render(
       <BrowserRouter>
@@ -67,18 +69,14 @@ describe("PhoneDetailPage", () => {
       </BrowserRouter>
     );
 
-    const loader = screen.getByTestId("loader");
+    const loader = screen.getByTestId(loaderTestId);
 
     expect(loader).toBeInTheDocument();
   });
 
   it("renders an error card when error happens", () => {
-    const errorMessage = "Phone not found";
-    usePhoneDetails.mockReturnValueOnce({
-      phoneDetails: null,
-      loading: false,
-      error: errorMessage,
-    });
+    const errorMessage = "Failed to load phone details.";
+    usePhoneDetails.mockReturnValueOnce(mockUsePhoneDetailsWithError);
 
     render(
       <BrowserRouter>

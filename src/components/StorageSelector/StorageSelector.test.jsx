@@ -1,69 +1,68 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import StorageSelector from "./StorageSelector";
 import { describe, it, expect, vi } from "vitest";
+import StorageSelector from "./StorageSelector";
+import { mockStorageOptions } from "../../mocks/storageOptions/storageOptions";
 
 describe("StorageSelector", () => {
-  const storageOptions = [
-    { capacity: "64GB", price: 100 },
-    { capacity: "128GB", price: 200 },
-    { capacity: "256GB", price: 300 },
-  ];
-
   const handleStorageChange = vi.fn();
-  const selectedStorage = { capacity: "128GB", price: 200 };
 
   it("renders storage options", () => {
     render(
       <StorageSelector
-        storageOptions={storageOptions}
+        storageOptions={mockStorageOptions}
         handleStorageChange={handleStorageChange}
-        selectedStorage={selectedStorage}
+        selectedStorage={mockStorageOptions[1]}
       />
     );
 
-    storageOptions.forEach((option) => {
-      expect(screen.getByText(option.capacity)).toBeInTheDocument();
+    mockStorageOptions.forEach((option) => {
+      const expectedStorageOption = screen.getByText(option.capacity);
+      expect(expectedStorageOption).toBeInTheDocument();
     });
   });
 
   it("calls handleStorageChange when a button is clicked", () => {
     render(
       <StorageSelector
-        storageOptions={storageOptions}
+        storageOptions={mockStorageOptions}
         handleStorageChange={handleStorageChange}
-        selectedStorage={selectedStorage}
+        selectedStorage={mockStorageOptions[1]}
       />
     );
 
-    const button = screen.getByText("64GB");
+    const button = screen.getByText(mockStorageOptions[0].capacity);
     fireEvent.click(button);
 
-    expect(handleStorageChange).toHaveBeenCalledWith(storageOptions[0]);
+    expect(handleStorageChange).toHaveBeenCalledWith(mockStorageOptions[0]);
   });
 
   it("applies selected class to the selected storage option", () => {
     render(
       <StorageSelector
-        storageOptions={storageOptions}
+        storageOptions={mockStorageOptions}
         handleStorageChange={handleStorageChange}
-        selectedStorage={selectedStorage}
+        selectedStorage={mockStorageOptions[1]}
       />
     );
 
-    const selectedButton = screen.getByText("128GB");
+    const selectedButton = screen.getByText(mockStorageOptions[1].capacity);
+
     expect(selectedButton).toHaveClass("storage-selector__button--selected");
   });
 
   it("applies no-selected class to the non-selected storage options", () => {
     render(
       <StorageSelector
-        storageOptions={storageOptions}
+        storageOptions={mockStorageOptions}
         handleStorageChange={handleStorageChange}
-        selectedStorage={selectedStorage}
+        selectedStorage={mockStorageOptions[1]}
       />
     );
 
-    const nonSelectedButton = screen.getByText("64GB");
+    const nonSelectedButton = screen.queryByText(
+      mockStorageOptions[0].capacity
+    );
+
     expect(nonSelectedButton).toHaveClass(
       "storage-selector__button--no-selected"
     );

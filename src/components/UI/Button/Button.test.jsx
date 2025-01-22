@@ -4,9 +4,10 @@ import { describe, it, expect, beforeEach } from "vitest";
 
 describe("Button component", () => {
   beforeEach(cleanup);
+  const buttonText = "Click me";
 
   it("renders the button with children", () => {
-    render(<Button>Click me</Button>);
+    render(<Button>{buttonText}</Button>);
 
     const buttonElement = screen.getByText(/click me/i);
 
@@ -14,7 +15,7 @@ describe("Button component", () => {
   });
 
   it("applies the default theme", () => {
-    render(<Button>Click me</Button>);
+    render(<Button>{buttonText}</Button>);
 
     const buttonElement = screen.getByText(/click me/i);
 
@@ -22,7 +23,7 @@ describe("Button component", () => {
   });
 
   it("applies the white theme", () => {
-    render(<Button theme="white">Click me</Button>);
+    render(<Button theme="white">{buttonText}</Button>);
 
     const buttonElement = screen.getByText(/click me/i);
 
@@ -30,7 +31,7 @@ describe("Button component", () => {
   });
 
   it("applies the disabled state", () => {
-    render(<Button disabled>Click me</Button>);
+    render(<Button disabled>{buttonText}</Button>);
 
     const buttonElement = screen.getByText(/click me/i);
 
@@ -39,7 +40,7 @@ describe("Button component", () => {
   });
 
   it("passes additional props to the button element", () => {
-    render(<Button data-testid="custom-button">Click me</Button>);
+    render(<Button data-testid="custom-button">{buttonText}</Button>);
 
     const buttonElement = screen.getByTestId("custom-button");
 

@@ -1,19 +1,18 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect, beforeEach, vi } from "vitest";
+import { BrowserRouter } from "react-router-dom";
 import CartPage from "./CartPage";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
-import { BrowserRouter } from "react-router-dom";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
+import { mockUseCartInformationWithPurchases } from "../../mocks/hooks/useCartInformation";
+import { mockedPhoneList } from "../../mocks/phones/phones";
 
 vi.mock("../../contexts/CartContext/CartContext");
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 
 describe("CartPage", () => {
   beforeEach(() => {
-    useCartInformation.mockReturnValue({
-      phonesInCart: 3,
-      cart: [{ name: "Phone 1" }, { name: "Phone 2" }, { name: "Phone 3" }],
-    });
+    useCartInformation.mockReturnValue(mockUseCartInformationWithPurchases);
 
     useCartContext.mockReturnValue({
       addPhoneToCart: vi.fn(),
@@ -21,13 +20,17 @@ describe("CartPage", () => {
     });
   });
 
+  const phonesInCartText = "cart (3)";
+
   it("should display the correct number of phones in cart", () => {
     render(
       <BrowserRouter>
         <CartPage />
       </BrowserRouter>
     );
-    expect(screen.getByText("cart (3)")).toBeInTheDocument();
+
+    const expectedText = screen.getByText(phonesInCartText);
+    expect(expectedText).toBeInTheDocument();
   });
 
   it("should render CartDisplay component with items", () => {
@@ -36,19 +39,28 @@ describe("CartPage", () => {
         <CartPage />
       </BrowserRouter>
     );
-    expect(screen.getByText("cart (3)")).toBeInTheDocument();
-    expect(screen.getByText("Phone 1")).toBeInTheDocument();
-    expect(screen.getByText("Phone 2")).toBeInTheDocument();
-    expect(screen.getByText("Phone 3")).toBeInTheDocument();
+
+    const expectedText = screen.getByText(phonesInCartText);
+    const expectedFirstPhone = screen.getByText(mockedPhoneList[0].name);
+    const expectedSecondPhone = screen.getByText(mockedPhoneList[1].name);
+
+    expect(expectedText).toBeInTheDocument();
+    expect(expectedFirstPhone).toBeInTheDocument();
+    expect(expectedSecondPhone).toBeInTheDocument();
   });
 
   it("should render PaymentSection component", () => {
+    const totalText = "Total";
     render(
       <BrowserRouter>
         <CartPage />
       </BrowserRouter>
     );
-    expect(screen.getByText("cart (3)")).toBeInTheDocument();
-    expect(screen.getByText("Total")).toBeInTheDocument();
+
+    const expectedText = screen.getByText(phonesInCartText);
+    const expectedPaymentSection = screen.getByText(totalText);
+
+    expect(expectedText).toBeInTheDocument();
+    expect(expectedPaymentSection).toBeInTheDocument();
   });
 });

@@ -2,12 +2,14 @@ import { render, cleanup, screen } from "@testing-library/react";
 import { describe, it, expect, afterEach } from "vitest";
 import { BrowserRouter } from "react-router-dom";
 import PhoneCardList from "./PhoneCardList";
-import { mockListOfPhones } from "../../mocks/phones/phones";
+import { mockedPhoneList } from "../../mocks/phones/phones";
 
 describe("PhoneCardList", () => {
   afterEach(cleanup);
 
-  const phones = mockListOfPhones;
+  const phones = mockedPhoneList;
+  const phoneCardTestId = "phone-card";
+  const phoneCardListTestId = "phone-card-list";
 
   it("renders without crashing", () => {
     render(
@@ -23,7 +25,8 @@ describe("PhoneCardList", () => {
         <PhoneCardList phones={phones} />
       </BrowserRouter>
     );
-    const phoneCards = screen.queryAllByTestId("phone-card");
+
+    const phoneCards = screen.queryAllByTestId(phoneCardTestId);
 
     expect(phoneCards.length).toBe(phones.length);
   });
@@ -34,7 +37,8 @@ describe("PhoneCardList", () => {
         <PhoneCardList phones={phones} />
       </BrowserRouter>
     );
-    const phoneCards = screen.queryAllByTestId("phone-card");
+
+    const phoneCards = screen.queryAllByTestId(phoneCardTestId);
 
     Array.from(phoneCards).forEach((phoneCard, index) => {
       expect(phoneCard).not.toBeNull(phones[index].name);
@@ -49,19 +53,26 @@ describe("PhoneCardList", () => {
         <PhoneCardList phones={phones} isHorizontal />
       </BrowserRouter>
     );
-    const phoneCards = screen.queryByTestId("phone-card-list");
+
+    const phoneCards = screen.queryByTestId(phoneCardListTestId);
 
     expect(phoneCards).toHaveClass("phone-grid-horizontal");
   });
 
   it("renders PhoneCard with `title` in it", () => {
+    const title = "title";
+
     render(
       <BrowserRouter>
-        <PhoneCardList phones={phones} isHorizontal title="title" />
+        <PhoneCardList phones={phones} isHorizontal title={title} />
       </BrowserRouter>
     );
-    const title = screen.queryByRole("heading", { name: /title/i, level: 2 });
 
-    expect(title).toBeInTheDocument();
+    const expectedTitle = screen.queryByRole("heading", {
+      name: /title/i,
+      level: 2,
+    });
+
+    expect(expectedTitle).toBeInTheDocument();
   });
 });

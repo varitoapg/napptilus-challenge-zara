@@ -4,6 +4,7 @@ import {
   saveCartToLocalStorage,
   removePhoneFromLocalStorage,
 } from "./cartServices";
+import { mockedCart } from "../../mocks/cart/cart";
 
 describe("cartServices", () => {
   beforeEach(() => {
@@ -20,38 +21,29 @@ describe("cartServices", () => {
     });
 
     it("should return the parsed cart if cart is stored", () => {
-      const cart = [{ id: 1, name: "Phone 1" }];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      expect(getCartFromLocalStorage()).toEqual(cart);
+      localStorage.setItem("cart", JSON.stringify(mockedCart));
+      expect(getCartFromLocalStorage()).toEqual(mockedCart);
     });
   });
 
   describe("saveCartToLocalStorage", () => {
     it("should save the cart to localStorage", () => {
-      const cart = [{ id: 1, name: "Phone 1" }];
-      saveCartToLocalStorage(cart);
-      expect(localStorage.getItem("cart")).toEqual(JSON.stringify(cart));
+      saveCartToLocalStorage(mockedCart);
+      expect(localStorage.getItem("cart")).toEqual(JSON.stringify(mockedCart));
     });
   });
 
   describe("removePhoneFromLocalStorage", () => {
     it("should remove the phone with the given id from the cart", () => {
-      const cart = [
-        { id: 1, name: "Phone 1", cartId: 1 },
-        { id: 2, name: "Phone 2", cartId: 2 },
-      ];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      removePhoneFromLocalStorage(1);
-      expect(getCartFromLocalStorage()).toEqual([
-        { id: 2, name: "Phone 2", cartId: 2 },
-      ]);
+      localStorage.setItem("cart", JSON.stringify(mockedCart));
+      removePhoneFromLocalStorage(mockedCart[0].cartId);
+      expect(getCartFromLocalStorage()).toEqual([mockedCart[1]]);
     });
 
     it("should do nothing if the phone id is not in the cart", () => {
-      const cart = [{ id: 1, name: "Phone 1" }];
-      localStorage.setItem("cart", JSON.stringify(cart));
-      removePhoneFromLocalStorage(2);
-      expect(getCartFromLocalStorage()).toEqual(cart);
+      localStorage.setItem("cart", JSON.stringify([mockedCart[0]]));
+      removePhoneFromLocalStorage(mockedCart[1].cartId);
+      expect(getCartFromLocalStorage()).toEqual([mockedCart[0]]);
     });
   });
 });
