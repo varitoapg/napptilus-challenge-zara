@@ -1,5 +1,5 @@
 .cart-page {
-  padding: 20px 80px;
+  padding: var(--padding-desktop);
 }
 
 .cart-page__total {
@@ -16,6 +16,6 @@
 
 @media (max-width: 425px) {
   .cart-page {
-    padding: 10px 10px;
+    padding: var(--padding-mobile);
   }
 }

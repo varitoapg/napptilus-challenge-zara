@@ -22,7 +22,7 @@
 
 .phone-form__header--name {
   font-weight: 300;
-  font-size: 20px;
+  font-size: var(--font-size-large);
 }
 
 .phone-form__header--price {
@@ -42,7 +42,7 @@
 }
 
 .custom-button {
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
   height: 56px;
 }
 

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Button from "../Button/Button";
+import Button from "../UI/Button/Button";
 import { usePhoneSelector } from "../../hooks/usePhoneSelector/usePhoneSelector";
 import StorageSelector from "../StorageSelector/StorageSelector";
 import ColorSelector from "../ColorSelector/ColorSelector";

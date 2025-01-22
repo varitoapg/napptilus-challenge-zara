@@ -31,7 +31,7 @@
 .item-in-cart__info,
 .item-in-cart__price {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -41,7 +41,7 @@
   border: none;
   color: #df0000;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: var(--font-size-small);
   cursor: pointer;
   transition: color 0.3s ease;
   margin-top: auto;

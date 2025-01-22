@@ -1,5 +1,5 @@
 .storage-selector__label {
-  font-size: 14px;
+  font-size: var(--font-size-small);
   text-transform: uppercase;
 }
 
@@ -13,14 +13,14 @@
   border: 1px solid #bebebe;
   padding: 10px 10px;
   cursor: pointer;
-  background-color: white;
-  font-size: 14px;
+  background-color: var(--main-white);
+  font-size: var(--font-size-small);
   height: 48px;
   width: 95px;
 }
 
 .storage-selector__button--selected {
-  border: 1px solid black;
+  border: 1px solid var(--main-black);
 }
 
 .storage-selector__button--no-selected {

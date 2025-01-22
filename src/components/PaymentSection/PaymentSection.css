@@ -15,7 +15,7 @@
 .payment-section__total {
   display: flex;
   gap: 10px;
-  font-size: 14px;
+  font-size: var(--font-size-small);
   font-weight: 400;
 }
 

@@ -20,7 +20,7 @@
   height: 27px;
   padding-bottom: 5px;
   padding-right: 30px;
-  font-size: 16px;
+  font-size: var(--font-size-medium);
   border: none;
   border-bottom: 2px solid #00000067;
   outline: none;
@@ -38,6 +38,6 @@
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #888;
+  color: #888888;
   cursor: pointer;
 }

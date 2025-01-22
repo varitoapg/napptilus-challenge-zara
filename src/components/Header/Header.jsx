@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import EmptyCartIcon from "../EmptyCartIcon/EmptyCartIcon";
-import FullCartIcon from "../FullCartIcon/FullCartIcon";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
-import Logo from "../Logo/Logo";
+import EmptyCartIcon from "../UI/icons/EmptyCartIcon/EmptyCartIcon";
+import FullCartIcon from "../UI/icons/FullCartIcon/FullCartIcon";
+import Logo from "../UI/icons/Logo/Logo";
 import "./Header.css";
 
 function Header({ children }) {

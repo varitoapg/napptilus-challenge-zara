@@ -1,5 +1,5 @@
 .phones-page {
-  padding: 20px 80px;
+  padding: var(--padding-desktop);
 }
 
 .phones-page__content {
@@ -15,19 +15,19 @@
 }
 .phones-page__results-count {
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: var(--font-size-extra-small);
   font-weight: 300;
 }
 
 @media (max-width: 768px) {
   .phones-page {
-    padding: 10px 40px;
+    padding: var(--padding-tablet);
   }
 }
 
 @media (max-width: 425px) {
   .phones-page {
-    padding: 10px 10px;
+    padding: var(--padding-mobile);
   }
 
   .phones-page__content {
