@@ -5,14 +5,12 @@ import CartPage from "../../pages/CartPage/CartPage";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<PhonesPage />} />
-        <Route path="/phone/:phoneId" element={<PhoneDetailPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<PhonesPage />} />
+      <Route path="/phone/:phoneId" element={<PhoneDetailPage />} />
+      <Route path="/cart" element={<CartPage />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 

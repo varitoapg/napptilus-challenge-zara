@@ -7,17 +7,15 @@ export const MockedUseOfusePhoneDetails = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <>
-      <div>
-        {loading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-        {phoneDetails && (
-          <>
-            <p>{phoneDetails.name}</p>
-            <p>{phoneDetails.brand}</p>
-          </>
-        )}
-      </div>
-    </>
+    <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {phoneDetails && (
+        <>
+          <p>{phoneDetails.name}</p>
+          <p>{phoneDetails.brand}</p>
+        </>
+      )}
+    </div>
   );
 };

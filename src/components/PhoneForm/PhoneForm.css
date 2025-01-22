@@ -68,6 +68,7 @@
     align-items: flex-start;
     gap: 30px;
   }
+
   .phone-form__content {
     width: 100%;
   }
@@ -76,5 +77,13 @@
     width: 260px;
     height: 273px;
     object-fit: contain;
+  }
+
+  .custom-button.custom-button.black {
+    width: 100%;
+  }
+
+  .custom-button.custom-button.disabled {
+    width: 100%;
   }
 }

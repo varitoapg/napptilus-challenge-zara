@@ -26,8 +26,8 @@ function PhoneForm({ colorOptions, name, basePrice, storageOptions }) {
           <h2 className="phone-form__header--name">{name}</h2>
           <p className="phone-form__header--price">
             {selectedStorage?.price
-              ? `${basePrice}   `
-              : `From ${basePrice}   `}
+              ? `${selectedStorage.price}   `
+              : `From ${basePrice}  `}
             EUR
           </p>
         </div>
