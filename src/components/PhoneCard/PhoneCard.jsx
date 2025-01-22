@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 
 function PhoneCard({ phone, layout = "grid" }) {
   const cardClass =
-    layout === "horizontal" ? "phone-card--horizontal" : "phone-card";
+    layout === "horizontal"
+      ? "phone-card phone-card--horizontal"
+      : "phone-card";
 
   return (
     <Link to={`/phone/${phone.id}`} className="phone-card__link">

@@ -20,7 +20,7 @@
 }
 
 .storage-selector__button--selected {
-  border: 1px solid var(--main-black);
+  border: 1px solid var(--main-dark);
 }
 
 .storage-selector__button--no-selected {
