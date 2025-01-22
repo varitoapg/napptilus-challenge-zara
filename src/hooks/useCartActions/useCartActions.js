@@ -15,8 +15,8 @@ export const useCartActions = () => {
   );
 
   const removeFromCart = useCallback(
-    (phoneId) => {
-      removePhoneFromCart(phoneId);
+    (cartId) => {
+      removePhoneFromCart(cartId);
     },
     [removePhoneFromCart]
   );
