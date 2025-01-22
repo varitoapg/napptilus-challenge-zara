@@ -1,6 +1,6 @@
 export const mockedCart = [
   {
-    capacity: " 1 GB",
+    capacity: "1 GB",
     cartId: "cart-1",
     colorName: "Black",
     id: "phone-1",
@@ -9,7 +9,7 @@ export const mockedCart = [
     price: 100,
   },
   {
-    capacity: " 2 GB",
+    capacity: "2 GB",
     cartId: "cart-2",
     colorName: "White",
     id: "phone-2",

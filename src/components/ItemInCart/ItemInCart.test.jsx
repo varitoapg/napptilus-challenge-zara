@@ -2,20 +2,11 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import ItemInCart from "./ItemInCart";
 import { useCartActions } from "../../hooks/useCartActions/useCartActions";
+import { mockedCart } from "../../mocks/cart/cart";
 
 vi.mock("../../hooks/useCartActions/useCartActions");
 
 describe("ItemInCart", () => {
-  const phone = {
-    id: "1",
-    capacity: "128GB",
-    colorName: "Black",
-    name: "iPhone 12",
-    imageUrl: "https://example.com/iphone12.jpg",
-    price: 999,
-    cartId: "1",
-  };
-
   const removeFromCart = vi.fn();
 
   beforeEach(() => {
@@ -23,19 +14,31 @@ describe("ItemInCart", () => {
   });
 
   it("renders phone details correctly", () => {
-    render(<ItemInCart phone={phone} />);
+    render(<ItemInCart phone={mockedCart[0]} />);
 
-    expect(screen.getByAltText("iPhone 12 Black")).toBeInTheDocument();
-    expect(screen.getByText("iPhone 12")).toBeInTheDocument();
-    expect(screen.getByText("128GB | Black")).toBeInTheDocument();
-    expect(screen.getByText("999 eur")).toBeInTheDocument();
+    const expectedFullName = screen.getByAltText(
+      `${mockedCart[0].name} ${mockedCart[0].colorName}`
+    );
+
+    const expectedName = screen.getByText(mockedCart[0].name);
+    const expectedStorageAndColor = screen.getByText(
+      `${mockedCart[0].capacity} | ${mockedCart[0].colorName}`
+    );
+    const expectedPrice = screen.getByText(mockedCart[0].price + " eur");
+
+    expect(expectedFullName).toBeInTheDocument();
+    expect(expectedName).toBeInTheDocument();
+    expect(expectedStorageAndColor).toBeInTheDocument();
+    expect(expectedPrice).toBeInTheDocument();
   });
 
   it("calls removeFromCart when the remove button is clicked", () => {
-    render(<ItemInCart phone={phone} />);
+    const expectedDeleteButton = "eliminar";
 
-    fireEvent.click(screen.getByText("eliminar"));
+    render(<ItemInCart phone={mockedCart[0]} />);
 
-    expect(removeFromCart).toHaveBeenCalledWith("1");
+    fireEvent.click(screen.getByText(expectedDeleteButton));
+
+    expect(removeFromCart).toHaveBeenCalledWith(mockedCart[0].cartId);
   });
 });
