@@ -22,7 +22,7 @@ function ItemInCart({ phone }) {
         </div>
         <button
           className="item-in-cart__remove-button"
-          onClick={() => removeFromCart(phone.id)}
+          onClick={() => removeFromCart(phone.cartId)}
         >
           eliminar
         </button>
@@ -39,6 +39,7 @@ ItemInCart.propTypes = {
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    cartId: PropTypes.string.isRequired,
   }),
 };
 

@@ -13,6 +13,7 @@ describe("ItemInCart", () => {
     name: "iPhone 12",
     imageUrl: "https://example.com/iphone12.jpg",
     price: 999,
+    cartId: "1",
   };
 
   const removeFromCart = vi.fn();
