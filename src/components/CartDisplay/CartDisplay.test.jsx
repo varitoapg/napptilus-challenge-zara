@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import CartDisplay from "./CartDisplay";
 import { useCartInformation } from "../../hooks/useCartInformation/useCartInformation";
 import { useCartContext } from "../../contexts/CartContext/CartContext";
-import { mockedCart } from "../../mocks/phones/cart";
+import { mockedCart } from "../../mocks/cart/cart";
 
 vi.mock("../../hooks/useCartInformation/useCartInformation");
 vi.mock("../../contexts/CartContext/CartContext", () => ({
