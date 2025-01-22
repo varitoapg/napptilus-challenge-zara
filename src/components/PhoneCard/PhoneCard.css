@@ -1,5 +1,4 @@
 .phone-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,7 +10,7 @@
 
   overflow: hidden;
 
-  border: 1px solid #00000067;
+  border: 1px solid var(--main-dark);
   padding: 1rem;
 
   transition: color 0.3s;
@@ -90,7 +89,7 @@
   height: 344px;
   margin-right: 0;
   flex-shrink: 0;
-  border: 1px solid #00000067;
+  border: 1px solid var(--main-dark);
   padding: 1rem;
   box-sizing: border-box;
   display: flex;
