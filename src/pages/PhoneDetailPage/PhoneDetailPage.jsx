@@ -6,7 +6,7 @@ import PhoneForm from "../../components/PhoneForm/PhoneForm";
 import PhoneSpecifications from "../../components/PhoneSpecifications/PhoneSpecifications";
 import Header from "../../components/Header/Header";
 import LeftChevronIcon from "../../components/UI/icons/LeftChevronIcon/LeftChevronIcon";
-import QueryWrapper from "../../components/QueryWrapper/QueryWrapper";
+import QueryWrapper from "../../components/UI/QueryWrapper/QueryWrapper";
 import "./PhoneDetailPage.css";
 
 function PhoneDetailPage() {

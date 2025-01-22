@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Loader from "../UI/Loader/Loader";
+import Loader from "../Loader/Loader";
 import ErrorCard from "../ErrorCard/ErrorCard";
 
 function QueryWrapper({ children, error, loading }) {

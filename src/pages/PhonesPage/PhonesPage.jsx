@@ -3,7 +3,7 @@ import { useSearchPhone } from "../../hooks/useSearchPhone/useSearchPhone";
 import PhoneCardList from "../../components/PhoneCardList/PhoneCardList";
 import SearchPhoneInput from "../../components/SearchPhoneInput/SearchPhoneInput";
 import Header from "../../components/Header/Header";
-import QueryWrapper from "../../components/QueryWrapper/QueryWrapper";
+import QueryWrapper from "../../components/UI/QueryWrapper/QueryWrapper";
 import "./PhonesPage.css";
 
 function PhonesPage() {
