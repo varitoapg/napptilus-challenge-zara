@@ -5,15 +5,17 @@ import { beforeEach } from "node:test";
 
 describe("QueryWrapper", () => {
   beforeEach(cleanup);
+  const testText = "Child Component";
+  const loaderTestId = "loader";
 
   it("renders children when not loading and no error", () => {
     render(
       <QueryWrapper loading={false} error={null}>
-        <div>Child Component</div>
+        <div>{testText}</div>
       </QueryWrapper>
     );
 
-    const childComponent = screen.getByText("Child Component");
+    const childComponent = screen.getByText(testText);
 
     expect(childComponent).toBeInTheDocument();
   });
@@ -21,11 +23,11 @@ describe("QueryWrapper", () => {
   it("renders Loader when loading is true", () => {
     render(
       <QueryWrapper loading={true} error={null}>
-        <div>Child Component</div>
+        <div>{testText}</div>
       </QueryWrapper>
     );
 
-    const loader = screen.getByTestId("loader");
+    const loader = screen.getByTestId(loaderTestId);
 
     expect(loader).toBeInTheDocument();
   });
@@ -35,7 +37,7 @@ describe("QueryWrapper", () => {
 
     render(
       <QueryWrapper loading={false} error={errorMessage}>
-        <div>Child Component</div>
+        <div>{testText}</div>
       </QueryWrapper>
     );
 
@@ -49,11 +51,14 @@ describe("QueryWrapper", () => {
 
     render(
       <QueryWrapper loading={true} error={errorMessage}>
-        <div>Child Component</div>
+        <div>{testText}</div>
       </QueryWrapper>
     );
 
-    expect(screen.getByTestId("loader")).toBeInTheDocument();
-    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+    const errorCard = screen.getByText(errorMessage);
+    const loader = screen.getByTestId(loaderTestId);
+
+    expect(loader).toBeInTheDocument();
+    expect(errorCard).toBeInTheDocument();
   });
 });
