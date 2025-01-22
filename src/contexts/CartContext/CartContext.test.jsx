@@ -7,6 +7,7 @@ import {
   removePhoneFromLocalStorage,
 } from "../../services/cartServices/cartServices";
 import MockUseOfCartContext from "../../mocks/cart/MockUseOfCartContext";
+import { mockedCart } from "../../mocks/cart/cart";
 
 vi.mock("../../services/cartServices/cartServices");
 
@@ -16,45 +17,60 @@ describe("CartContext", () => {
   });
 
   it("should provide an empty cart initially", () => {
+    const results = "0";
+
     render(
       <CartProvider>
         <MockUseOfCartContext />
       </CartProvider>
     );
+    const expectedResults = screen.getByText(results);
 
-    expect(screen.getByText("0")).toBeInTheDocument();
+    expect(expectedResults).toBeInTheDocument();
   });
 
   it("should add a phone to the cart", () => {
-    const phone = { id: "1", name: "Phone 1" };
+    const addButtonText = "Add Phone";
+    const results = "1";
 
     render(
       <CartProvider>
-        <MockUseOfCartContext phone={phone} />
+        <MockUseOfCartContext phone={mockedCart[0]} />
       </CartProvider>
     );
     act(() => {
-      screen.getByText("Add Phone").click();
+      const expectedAddButton = screen.getByText(addButtonText);
+      fireEvent.click(expectedAddButton);
     });
-    expect(screen.getByText("1")).toBeInTheDocument();
-    expect(saveCartToLocalStorage).toHaveBeenCalledWith([phone]);
+
+    const expectedResults = screen.getByText(results);
+
+    expect(expectedResults).toBeInTheDocument();
+    expect(saveCartToLocalStorage).toHaveBeenCalledWith([mockedCart[0]]);
   });
 
   it("should remove a phone from the cart", () => {
-    const phone = { id: "1", name: "Phone 1", cartId: "1" };
-    getCartFromLocalStorage.mockReturnValue([phone]);
+    const removeButtonText = "Remove Phone";
+    const results = "0";
+    getCartFromLocalStorage.mockReturnValue([mockedCart[0]]);
 
     render(
       <CartProvider>
-        <MockUseOfCartContext phone={phone} />
+        <MockUseOfCartContext phone={mockedCart[0]} />
       </CartProvider>
     );
 
     act(() => {
-      fireEvent.click(screen.getByText("Remove Phone"));
+      const expectedRemoveButton = screen.getByText(removeButtonText);
+
+      fireEvent.click(expectedRemoveButton);
     });
 
-    expect(screen.getByText("0")).toBeInTheDocument();
-    expect(removePhoneFromLocalStorage).toHaveBeenCalledWith("1");
+    const expectedResults = screen.getByText(results);
+
+    expect(expectedResults).toBeInTheDocument();
+    expect(removePhoneFromLocalStorage).toHaveBeenCalledWith(
+      mockedCart[0].cartId
+    );
   });
 });
