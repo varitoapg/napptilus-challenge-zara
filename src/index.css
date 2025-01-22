@@ -7,6 +7,10 @@
 
   --main-white: #ffffff;
   --main-dark: #000000;
+
+  --padding-desktop: 20px 80px;
+  --padding-tablet: 10px 40px;
+  --padding-mobile: 10px 10px;
 }
 
 *,
