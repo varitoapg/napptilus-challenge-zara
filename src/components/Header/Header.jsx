@@ -11,8 +11,9 @@ function Header({ children }) {
 
   return (
     <header className="header">
+      <h1 className="visually-hidden">Zara Challenge</h1>
       <div className="header__content">
-        <Link to="/">
+        <Link to="/" aria-label="Go to homepage">
           <Logo className="header__logo" />
         </Link>
         {isCartVisible && (
