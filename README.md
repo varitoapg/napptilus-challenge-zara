@@ -11,6 +11,7 @@ This project is a web application focused on displaying, searching, and managing
 - [Setup Instructions](#setup-instructions)
 - [Other scripts](#other-scripts)
 - [Architecture](#architecture)
+- [Room for Improvement](#room-for-improvement)
 - [Contact](#contact)
 
 ## Code Quality
@@ -176,6 +177,17 @@ vite.config.js
 - **eslint.config.js**: Configuration for ESlint.
 - **vite.config.js**: Configuration for Vite.
 - **playwright.config.js**: Configuration for Playwright.
+
+## Room for Improvement
+
+There were several enhancements I planned but couldn’t implement due to time constraints and initial setup challenges (e.g., losing the first day attempting to set up Jest with Vite). Here’s the list:
+
+- Implement pagination on the main page for a better user experience.
+- Apply smoother styles across the app for improved UI/UX consistency.
+- Enable name color changes on hover in the phone details page for visual feedback.
+- Improve the approach to fetching the first 20 phones. While I created a function to remove duplicates, the current implementation can be optimized further.
+- Improve the images optimization.
+- Make a better carousel at similar options in phone detail page.
 
 ## Contact
 
