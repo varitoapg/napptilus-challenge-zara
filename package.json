@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "playwright": "playwright test --ui"
   },
   "dependencies": {
     "@uidotdev/usehooks": "^2.4.1",
